@@ -1,0 +1,9 @@
+<% title "#{@account.name}" %>
+
+<div class="bio">
+  <%=raw @account.bio_to_html%>
+</div>
+
+<div class="badge">
+  <em><%=@account.name%></em> made <%=@account.user.presentations.count%> presentations and <%=@account.user.votes.count%> votes.
+</div>
