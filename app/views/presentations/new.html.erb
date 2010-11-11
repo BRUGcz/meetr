@@ -1,0 +1,22 @@
+<% title "Submit new presentation"%>
+
+<%form_for @presentation do |f|%>
+  <%= f.error_messages %>
+  <%= f.hidden_field :meetup_id%>
+  <p>
+    <%=f.label :name, "Presentation name"%>
+    <%=f.text_field :name%>
+  </p>
+  <p>
+    <%=f.label :description, "Please describe your talk"%>
+    <%=f.text_area :description%>
+  </p>
+  <p>
+    <%=f.label :duration, "How much time you will need"%>
+    <%=f.select :duration, [["10 minutes", 600], ["20 minutes", 1200], ["40 minutes", 2400]]%>
+  </p>
+  <p>
+    <%=f.submit @submit_label || "Submit presentation"%>
+  </p>
+
+<%end%>

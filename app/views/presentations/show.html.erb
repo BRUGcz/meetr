@@ -1,0 +1,27 @@
+<% title link_to(@presentation.meetup.name, meetup_url(@presentation.meetup.id)) + " - #{@presentation.name}" %>
+<small>presented by</small> <em><%=@presentation.user%></em>
+<p style="float:right">
+  <small>submitted <%=distance_of_time_in_words(Time.now, @presentation.created_at)%> ago</small>
+</p>
+
+<div class="article">
+  <%=raw @presentation.to_html%>
+</div>
+
+<div class="status">
+  Talk duration: <%=@presentation.duration/60%> minutes
+</div>
+
+<h2>Votes (<%=@presentation.votes.count%>):</h2>
+<div class="votes">
+  <ul class="attendees">
+    <%@presentation.votes.each do |vote|%>
+      <li class="thumbup">
+        <%=image_tag vote.user.account.gravatar, :size => "32x32"%>
+        <%=link_to vote.user.account.name, vote.user.account.url%> &lt;<%=vote.user.email%>&gt;
+        <br/>
+        Voted for this presentation <%=distance_of_time_in_words(Time.now, vote.created_at)%> ago.
+      </li>
+    <%end%>
+  </ul>
+</div>

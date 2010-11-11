@@ -1,0 +1,44 @@
+<% title "Meetups"%>
+
+<table>
+  <thead>
+    <tr>
+      <th><%="Name"%></th>
+      <th><%="Location"%></th>
+      <th><%="Date"%></th>
+      <th><%="Attendees"%></th>
+      <th><%="Actions"%></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@meetups.each do |meetup|%>
+      <tr>
+        <td><%=link_to meetup.name, meetup_url(meetup.id)%></td>
+        <td><%=meetup.location%></td>
+        <td><%=meetup.human_date%></td>
+        <td><%=meetup.num_of_attendees%></td>
+        <td>
+          <span class="a">
+            <%unless meetup.user_attends?(current_user)%>
+              <%=link_to "Attending", url_for(:controller => :meetups, :action => :attend, :id => meetup.id)%>
+            <%else%>
+              <%=link_to "Not Attending", url_for(:controller => :meetups, :action => :not_attend,
+                                                  :id => meetup.id)%>
+            <%end%>
+          </span>
+          <span class="a">
+            <%=link_to "Delete", url_for(:controller => :meetups, :action => :destroy, :id => meetup.id)%>
+          </span>
+          <span class="a">
+            <%=link_to "Edit", url_for(:controller => :meetups, :action => :edit, :id => meetup.id)%>
+          </span>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="5"><%=link_to "Create new", new_meetup_path%></td>
+    </tr>
+  </tfoot>
+</table>

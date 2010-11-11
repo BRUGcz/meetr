@@ -1,0 +1,80 @@
+<% title "#{@meetup.name}"%>
+
+<div class="event_details">
+  <h2>Details</h2>
+  <ul class="details">
+    <li>
+      <%=label :location, "Location"%>
+      <span id="location" class="v">
+        <%=@meetup.location%>
+        <small>
+          (<%=link_to "Map", "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=#{@meetup.location}&ie=UTF8&hq=&ht=h&z=16&iwloc=A", :target => :blank %>)</small>
+      </span>
+    </li>
+    <li>
+      <%=label :description, "Description"%>
+      <span id="description" class="v"><%=@meetup.description%></span>
+    </li>
+    <li>
+      <%=label :happend_at, "Event date"%>
+      <span id="happening_at" class="v">
+        <%=@meetup.human_date%> at <%=@meetup.happening_at.strftime("%H:%M")%>
+        (in <%=distance_of_time_in_words(Time.now, @meetup.happening_at)%>)
+      </span>
+    </li>
+  </ul>
+  <br/>
+  <h2>Scheduled talks</h2>
+  <ul class="presentations">
+    <%@meetup.presentations.each do |presentation|%>
+      <li>
+        <%=image_tag presentation.user.account.gravatar, :size => "32x32"%>
+        <strong><%=link_to presentation.name, presentation_path(presentation.id)%></strong>
+                <br/>
+        <%=link_to presentation.user.account.name, presentation.user.account.url%> 
+        &lt;<%=presentation.user.email%>&gt;
+        <%=link_to image_tag("vote_like.gif"), { :controller => :presentations, :action => :vote, 
+                                               :id => presentation.id}%>
+        <small>(<%=presentation.votes.count%> votes)</small>
+      </li>
+    <%end%>
+  </ul>
+  <p>
+    <span class="a">
+      <%=link_to "Submit your talk", { :controller => :presentations, :action => :new, 
+                                       :"presentation[meetup_id]" => @meetup.id}%>
+    </span>
+  </p>
+</div>
+
+<div class="attendees_list">
+  <h2>People in this event</h2>
+  <ul class="attendees">
+    <%@meetup.attendees.each do |user|%>
+      <li>
+        <%=image_tag user.account.gravatar, :size => "32x32"%>
+        <%=link_to user.account.name, user.account.url%> &lt;<%=user.email%>&gt;
+        <br/>
+        This will <u><%=@meetup.user_attends?(user) ? "attend" : "not attend"%></u> this event
+      </li>
+    <%end%>
+  </ul>
+  <br/>
+  <h2>Public timeline</h2>
+  <div class="wall">
+      <%form_for @meetup.timelines.new do |f|%>
+        <%=f.hidden_field :meetup_id, :value => @meetup.id%>
+        <%=f.text_area :message%>
+        <%=f.submit "Post"%>
+      <%end%>
+      <ul class="presentations" id="timeline">
+      <%@meetup.timelines.find(:all, :order => "created_at DESC").each do |msg|%>
+        <li>
+          <%=image_tag msg.user.account.gravatar, :size => "32x32"%>
+          <%=link_to msg.user.account.name, msg.user.account.url%>
+          <%=msg.message%> <small>(<%=distance_of_time_in_words(Time.now, msg.created_at)%> ago)</small>
+        </li>
+      <%end%>
+    </ul>
+  </div>
+</div>

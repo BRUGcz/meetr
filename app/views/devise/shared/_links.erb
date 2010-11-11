@@ -1,0 +1,9 @@
+<%- if devise_mapping.omniauthable? %>
+  <ul class="auth_providers">
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <li>
+      <%= link_to image_tag("#{provider}.png"), omniauth_authorize_path(resource_name, provider) %><br />
+    </li>
+  <% end -%>
+  </ul>
+<% end -%>

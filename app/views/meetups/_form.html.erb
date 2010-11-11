@@ -1,0 +1,22 @@
+<%form_for @meetup do |f|%>
+  <%= f.error_messages %>
+  <p>
+    <%=f.label :name, "Name"%>
+    <%=f.text_field :name%>
+  </p>
+  <p>
+    <%=f.label :location, "Location"%>
+    <%=f.text_field :location%>
+  </p>
+  <p>
+    <%=f.label :description, "Description"%>
+    <%=f.text_area :description%>
+  </p>
+  <p>
+    <%=f.label :happening_at, "Date"%>
+    <%=f.datetime_select :happening_at%>
+  </p>
+  <p>
+    <%=f.submit @submit_label || "Create meetup"%>
+  </p>
+<%end%>

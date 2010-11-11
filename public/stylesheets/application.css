@@ -1,0 +1,284 @@
+body {
+  background-color: #4B7399;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px;
+}
+
+a img {
+  border: none;
+}
+
+a {
+  /* color: #0000FF; */
+  color : #980905;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px;
+}
+
+.footer {
+  border : 1px solid #fff;
+  padding-top : 2em;
+  text-align : center;
+  clear : both;
+}
+
+.float-right {
+  float : right;
+}
+
+.float-right a {
+  border-left : 1px solid #666;
+  padding-left : 0.5em;
+}
+
+.float-right a.first {
+  border-style : none!important;
+}
+
+#flash_notice, #flash_error, #flash_alert {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+#flash_error, #flash_alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+.fieldWithErrors {
+  display: inline;
+}
+
+.error_messages {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  font-size: 12px;
+}
+
+.error_messages h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin: 0;
+  background-color: #c00;
+  color: #fff;
+}
+
+.error_messages p {
+  margin: 8px 10px;
+}
+
+.error_messages ul {
+  margin: 0;
+}
+
+label {
+  color : #666;
+  font-weight : bold;
+  font-size : 90%;
+  display : block;
+  margin-top : 0.3em;
+}
+
+label:after {
+  content: ":";
+}
+
+table {
+  border-collapse : collapse;
+  width : 100%;
+  border : 1px solid #ddd;
+}
+
+table th {
+  background : #C0DAF4;
+  text-align : left;
+}
+
+table tbody td {
+  border : 1px solid #ddd;
+  padding : 5px;
+}
+
+table tfoot td {
+  text-align : right;
+  padding : 0.5em 0.2em;
+}
+
+span.a a {
+  border : 1px solid #ccc;
+  background : #C8F4C0;
+  color : #222;
+  font-weight : bold;
+  text-decoration : none;
+  font-size : 90%;
+  padding : 3px 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+ul li {
+  list-style : none;
+}
+
+ul {
+  margin : 0;
+  padding : 0;
+}
+
+div.event_details {
+  float : left;
+  width : 500px;
+  padding : 5px;
+}
+
+div.event_details ul.presentations,
+div.attendees_list ul.attendees,
+div.event_details ul.details {
+  padding : 0.5em;
+  background : #D9FFA9;
+  color : #000;
+  border : 1px solid #ccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+div.event_details ul.presentations {
+  background : #F6FFDE;
+}
+
+div.attendees_list ul.attendees {
+  background : #F5FBFE;
+}
+
+div.attendees_list {
+  float : left;
+  margin-left : 50px;
+  width : 400px;
+  padding : 5px;
+}
+
+div.event_details h2,
+div.attendees_list h2 {
+  margin-top : 0;
+}
+
+.attendees li, 
+.presentations li  {
+  margin : 2em 0;
+  clear : left;
+}
+
+ul.attendees li img,
+.presentations li img {
+  float : left;
+  margin-right : 1em;
+}
+
+ul.attendees li a img,
+.presentations li a img {
+  float : none;
+  margin : auto;
+}
+
+ul.attendees li {
+  clear : right;
+}
+
+hr {
+  border-style : none;
+  clear : both;
+}
+
+.auth_providers li {
+  text-align : center;
+  margin : 10px;
+}
+
+.wall form textarea {
+  width : 100%;
+  height : 3em;
+}
+
+.wall form {
+  text-align : right;
+}
+
+.wall li small {
+  color : #666;
+}
+
+.wall li a {
+  color : #333;
+  font-weight : bold;
+  text-decoration : none;
+}
+
+.wall li {
+  font-size : 90%;
+  border-bottom : 1px solid #ccc;
+  padding : 0 0 0.2em 0;
+  min-height : 35px;
+  margin : 1em 0;
+}
+
+input[type=text] {
+  border : 1px solid #ccc;
+  font-size : 130%;
+  padding : 3px;
+  border : 1px solid #ccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+textarea {
+  width : 100%;
+}
+
+li.thumbup {
+  background: url('/images/thumb_up.png') no-repeat center left;
+  padding-left : 40px;
+}
+
+div.article {
+  border : 1px solid #ccc;
+  background : #F5FBFE;
+  padding : 1em 0.5em;
+  font-size : 130%;
+}
+
+div.status {
+  text-align : right;
+  color : #333;
+}
+
+h2 {
+  color : #666;
+  font-weight : normal;
+}
