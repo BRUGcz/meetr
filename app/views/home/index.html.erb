@@ -6,7 +6,7 @@ Discuss <strong>Ruby</strong> development, both within web frameworks (<a href="
 </p>
 
 <ul class="home-meetups">
-  <li><strong>Latest meetups:</strong></li>
+  <li><strong>Upcoming:</strong></li>
   <%@meetups.each do |meetup|%>
     <li><%=link_to meetup.name, meetup_url(meetup.id)%> @ <%=meetup.human_date%></li>
   <%end%>
@@ -14,13 +14,13 @@ Discuss <strong>Ruby</strong> development, both within web frameworks (<a href="
 
 <div style="clear:both;"></div>
 
-<h2>Latest talks</h2>
+<h2>Recently submitted talks:</h2>
 
 <table>
   <thead>
     <tr>
       <th>Event</th>
-      <th>Presentation name</th>
+      <th>Talk name</th>
       <th>Presenter</th>
       <th>Duration</th>
     </tr>
