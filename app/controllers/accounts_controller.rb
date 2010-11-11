@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @account = current_user.account
+    @account = Account.find(params[:id])
     respond_to do |format|
       format.html { render :show }
     end
