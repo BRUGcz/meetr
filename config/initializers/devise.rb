@@ -16,9 +16,9 @@ Devise.setup do |config|
   #:access_token_path => '/oauth/access_token',
   #:scope => %w(email)
 
-  config.omniauth :facebook, "", ""
+  config.omniauth :facebook, "162802060427479", "05ac6b15150bc964e6753245d2dc815d"
   config.omniauth :google_apps, OpenID::Store::Filesystem.new('/tmp'), :domain => 'gmail.com'
-  config.omniauth :twitter, "", ""
+  config.omniauth :twitter, "SSNr2iNr9YVMxYmYJDng", "nUhp7Uk51ebsFKBH0OuDbeD3dpem58pEumrYIs1AAjM"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

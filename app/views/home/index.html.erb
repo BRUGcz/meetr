@@ -1,8 +1,38 @@
 <% title "Welcome to Brno Ruby Meetup"%>
+<h1 class="home"><%=@title%></h1>
 
-<% unless user_signed_in? %>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %> or 
-  <%= link_to "sign in with google", user_omniauth_authorize_path(:open_id, :openid_url => "https://www.google.com/accounts/o8/id") %>
-<% else %>
-  <%= ap current_user %>
-<% end %>
+<p class="home-about">
+Discuss <strong>Ruby</strong> development, both within web frameworks (<a href="http://http://rubyonrails.org/">Rails</a>, <a href="http://sinatrarb.com">Sinatra</a>, etc..) and outside as system or desktop development. The atmosphere is informal, we encourage participation from everyone, interruptions are par for the course. We use a projector so everyone can type code and everyone can see. Meetings generally run an hour to two hours max and is followed by a social gathering at a nearby pub.
+</p>
+
+<ul class="home-meetups">
+  <li><strong>Latest meetups:</strong></li>
+  <%@meetups.each do |meetup|%>
+    <li><%=link_to meetup.name, meetup_url(meetup.id)%> @ <%=meetup.human_date%></li>
+  <%end%>
+</ul>
+
+<div style="clear:both;"></div>
+
+<h2>Latest talks</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Presentation name</th>
+      <th>Presenter</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@presentations.each do |p|%>
+      <tr>
+        <td><%=link_to p.meetup.name, meetup_url(p.meetup)%></td>
+        <td><%=link_to p.name, presentation_url(p)%></td>
+        <td><%=link_to p.user, account_url(p.user.account)%></td>
+        <td><%=p.duration/60%> minutes</td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

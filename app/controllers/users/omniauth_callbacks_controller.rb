@@ -9,12 +9,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:notice] = "Authentication successful"
         redirect_to edit_user_registration_path
       else
-    
         authentication = UserToken.find_by_provider_and_uid(auth['provider'], auth['uid'])
-   
         if authentication
           flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => auth['provider']
-          sign_in_and_redirect(:user, authentication.user)
+          sign_in authentication.user
+          redirect_to root_url
         else
           if provider == :facebook
             @user=User.create(:email => auth['extra']['user_hash']['email'], 
@@ -25,6 +24,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             @user = User.create(:email => auth['user_info']['email'], :password => Devise.friendly_token[0, 20])
             @user.create_account!(auth['user_info']['name'], 
                                 "http://www.google.com/profiles/#{auth["user_info"]["email"].split('@').first}")
+          end
+          if provider == :tweeter
+            ap auth
           end
           @user.user_tokens << UserToken.create(:provider => auth['provider'], :uid => auth['uid'])
           sign_in @user

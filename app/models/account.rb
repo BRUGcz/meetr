@@ -9,4 +9,8 @@ class Account < ActiveRecord::Base
     "http://www.gravatar.com/avatar/#{hash}"
   end
 
+  def bio_to_html
+    Maruku.new(self.bio).to_html
+  end
+
 end

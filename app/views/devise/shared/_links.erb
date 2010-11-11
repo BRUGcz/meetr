@@ -1,8 +1,13 @@
 <%- if devise_mapping.omniauthable? %>
   <ul class="auth_providers">
-  <%- resource_class.omniauth_providers.each do |provider| %>
+  <%@providers = resource_class.omniauth_providers%>
+  <%- @providers.each do |provider| %>
     <li>
       <%= link_to image_tag("#{provider}.png"), omniauth_authorize_path(resource_name, provider) %><br />
+      <br/>
+      <%unless provider.eql?(@providers.last)%>
+        <strong style="font-size:150%;">Or</strong>
+      <%end%>
     </li>
   <% end -%>
   </ul>

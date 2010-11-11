@@ -1,6 +1,6 @@
-<% title "Submit new presentation"%>
+<% title "Submitting a new presentation on #{@presentation.meetup.name}"%>
 
-<%form_for @presentation do |f|%>
+<%=form_for @presentation do |f|%>
   <%= f.error_messages %>
   <%= f.hidden_field :meetup_id%>
   <p>

@@ -13,9 +13,11 @@
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
       <%= render 'layouts/authentication_box' %>
-      <%= content_tag :h1, yield(:title) if show_title? %>
+      <%= content_tag :h1, yield(:title) if show_title? and not @no_title%>
       <%= yield %>
-      <div class="footer">&copy; GPL</div>
+      <div class="footer">
+        Powered by <a href="http://github.com/mifo/Meetr">Meetr</a> &copy; 2010 Michal Fojtik
+      </div>
     </div>
   </body>
 </html>

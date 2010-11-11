@@ -1,5 +1,5 @@
 class MeetupsController < ApplicationController
-   before_filter :authenticate_user!
+   before_filter :authenticate_user!, :except => [ :show ]
 
    def index
      @meetups = Meetup.find(:all, :order => "created_at ASC")
@@ -58,16 +58,12 @@ class MeetupsController < ApplicationController
    def attend
      meetup = Meetup.find(params[:id])
      if meetup.add_attendee(current_user)
-        meetup.timelines << Timeline.new(:user_id => current_user, 
-          :message => "has confirmed that he will attend #{meetup.name}")
        flash[:notice] = "You successfully added yourself to this meetup"
      else
        if meetup.user_attends?(current_user)
          flash[:error] = "You already attending this meetup"
        else
-         meetup.attendee(current_user).update_attributes!(:is_attending => true)
-         meetup.timelines << Timeline.new(:user_id => current_user, 
-          :message => "has changed his mind and will attend #{meetup.name}")
+         meetup.update_attendee(current_user, true)
          flash[:notice] = "You successfully added yourself to this meetup"
        end
      end
@@ -77,11 +73,7 @@ class MeetupsController < ApplicationController
    def not_attend
      meetup = Meetup.find(params[:id])
      meetup.add_attendee(current_user)
-     meet_user = MeetupUser.find(:first, :conditions => { :user_id => current_user.id, :meetup_id => meetup.id})
-     meet_user.is_attending = false
-     meet_user.save!
-     meetup.timelines << Timeline.new(:user_id => current_user, 
-          :message => "will not attend #{meetup.name}")
+     meetup.update_attendee(current_user, false)
      flash[:error] = "You successfully removed yourself to this meetup"
      redirect_to meetup_path(meetup.id)
    end

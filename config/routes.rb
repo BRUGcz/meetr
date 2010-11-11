@@ -36,6 +36,7 @@ Meetr::Application.routes.draw do
   match 'presentations/vote/:id' => 'presentations#vote'
 
   resources :timelines
+  resources :accounts
 
   root :to => "home#index"
 

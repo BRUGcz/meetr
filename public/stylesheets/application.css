@@ -30,6 +30,8 @@ a {
 
 .footer {
   border : 1px solid #fff;
+  font-size : 85%;
+  color : #999;
   padding-top : 2em;
   text-align : center;
   clear : both;
@@ -152,7 +154,7 @@ ul {
 
 div.event_details {
   float : left;
-  width : 500px;
+  width : 45%;
   padding : 5px;
 }
 
@@ -179,7 +181,7 @@ div.attendees_list ul.attendees {
 div.attendees_list {
   float : left;
   margin-left : 50px;
-  width : 400px;
+  width : 45%;
   padding : 5px;
 }
 
@@ -281,4 +283,28 @@ div.status {
 h2 {
   color : #666;
   font-weight : normal;
+}
+
+.home-about {
+  float : left;
+  width : 40%;
+  border-right : 1px solid #ccc;
+  padding-right : 20px;
+}
+
+.home-meetups {
+  float : left;
+  width : 50%;
+  margin-left : 50px;
+}
+
+h1.home {
+  background : url("/images/ruby.png") no-repeat center left;
+  padding : 15px 0 15px 70px;
+}
+
+.signup-box {
+  border : 1px solid #ccc;
+  width : 50%;
+  margin : 2em auto;
 }

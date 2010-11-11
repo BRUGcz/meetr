@@ -34,7 +34,7 @@
         <%=link_to presentation.user.account.name, presentation.user.account.url%> 
         &lt;<%=presentation.user.email%>&gt;
         <%=link_to image_tag("vote_like.gif"), { :controller => :presentations, :action => :vote, 
-                                               :id => presentation.id}%>
+                                               :id => presentation.id} if user_signed_in?%>
         <small>(<%=presentation.votes.count%> votes)</small>
       </li>
     <%end%>
@@ -62,11 +62,11 @@
   <br/>
   <h2>Public timeline</h2>
   <div class="wall">
-      <%form_for @meetup.timelines.new do |f|%>
+      <%=form_for @meetup.timelines.new do |f|%>
         <%=f.hidden_field :meetup_id, :value => @meetup.id%>
         <%=f.text_area :message%>
         <%=f.submit "Post"%>
-      <%end%>
+      <%end if user_signed_in?%>
       <ul class="presentations" id="timeline">
       <%@meetup.timelines.find(:all, :order => "created_at DESC").each do |msg|%>
         <li>
