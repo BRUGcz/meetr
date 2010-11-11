@@ -55,7 +55,7 @@
         <%=image_tag user.account.gravatar, :size => "32x32"%>
         <%=link_to user.account.name, user.account.url%> &lt;<%=user.email%>&gt;
         <br/>
-        This will <u><%=@meetup.user_attends?(user) ? "attend" : "not attend"%></u> this event
+        Will <u><%=@meetup.user_attends?(user) ? "attend" : "not attend"%></u> this event
       </li>
     <%end%>
   </ul>
