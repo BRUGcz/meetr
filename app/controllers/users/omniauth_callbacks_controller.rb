@@ -29,7 +29,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           @user.user_tokens << UserToken.create(:provider => auth['provider'], :uid => auth['uid'])
           sign_in @user
           session["devise.#{provider}_data"] = env["omniauth.auth"]
-          redirect_to :back
+          redirect_to root_url
         end
       end
     end
