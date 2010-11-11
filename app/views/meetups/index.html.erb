@@ -31,19 +31,21 @@
           <span class="a">
             <%=link_to "Submit talk", url_for(:controller => :presentations, :action => :new, :"presentation[meetup_id]" => meetup.id)%>
           </span>
-          <span class="a">
-            <%=link_to "Delete", url_for(:controller => :meetups, :action => :destroy, :id => meetup.id)%>
-          </span>
-          <span class="a">
-            <%=link_to "Edit", url_for(:controller => :meetups, :action => :edit, :id => meetup.id)%>
-          </span>
+          <%if current_user.eql?(meetup.user)%>
+            <span class="a">
+              <%=link_to "Delete", url_for(:controller => :meetups, :action => :destroy, :id => meetup.id)%>
+            </span>
+            <span class="a">
+              <%=link_to "Edit", url_for(:controller => :meetups, :action => :edit, :id => meetup.id)%>
+            </span>
+          <%end%>
         </td>
       </tr>
     <%end%>
   </tbody>
   <tfoot>
     <tr>
-      <td colspan="5"><%=link_to "Create new", new_meetup_path%></td>
+      <td colspan="6"><span class="a"><%=link_to "Create new", new_meetup_path%></span></td>
     </tr>
   </tfoot>
 </table>
