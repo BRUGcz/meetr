@@ -1,11 +1,13 @@
 <div class="float-right">
   <% if user_signed_in?%>
     <%=link_to 'Home', root_path, :class => :first %>
-    <%=link_to 'Meetups', '/meetups' %>
-    <%=link_to 'Presentations', '/meetups' %>
+    <%=link_to 'Meetups', meetups_url %>
+    <%=link_to 'Presentations', '/presentations' %>
     <%=link_to 'Profile', '/users/edit' %>
     <%=link_to 'Logout', '/users/sign_out'%>
-  <% else %>
+  <% elsif params[:controller]!='devise/sessions'%>
     <%=link_to 'Sign in', '/users/sign_in', :class => :first unless user_signed_in?%>
+  <% else %>
+    <%=link_to 'Home', root_path, :class => :first unless user_signed_in?%>
   <% end %>
 </div>

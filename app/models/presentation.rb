@@ -20,6 +20,10 @@ class Presentation < ActiveRecord::Base
     Maruku.new(self.description).to_html
   end
 
+  def human_date
+    self.created_at.strftime("%d %B %Y")
+  end
+
   private
 
   def add_timeline_entry

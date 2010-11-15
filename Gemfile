@@ -11,3 +11,6 @@ gem 'date_validator'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "mocha", :group => :test
 gem "maruku", :require => "maruku"
+gem 'exceptional'
+gem "json_pure"
+gem 'warden_oauth'

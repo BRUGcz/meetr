@@ -26,7 +26,13 @@ Meetr::Application.routes.draw do
   end
 =end
 
+  devise_scope :user do
+    get "sign_in", :to => "devise/sessions#new"
+  end
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  resources :accounts
 
   resources :meetups
   match 'meetups/attend/:id' => 'meetups#attend'

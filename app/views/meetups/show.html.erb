@@ -48,7 +48,12 @@
 </div>
 
 <div class="attendees_list">
-  <h2>People in this event</h2>
+  <h2>
+    People in this event
+    <%if user_signed_in? and not @meetup.user_attends?(current_user)%>
+      <%=link_to "Attend!", url_for(:controller => :meetups, :action => :attend, :id => @meetup.id, :class => :green)%>
+    <%end%>
+  </h2>
   <ul class="attendees">
     <%@meetup.attendees.each do |user|%>
       <li>

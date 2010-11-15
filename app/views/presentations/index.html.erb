@@ -1,0 +1,26 @@
+<% title "Presentations"%>
+
+<table>
+  <thead>
+    <tr>
+      <th><%="Name"%></th>
+      <th><%="Presenter"%></th>
+      <th><%="Submitted at"%></th>
+      <th><%="Meetup"%></th>
+      <th><%="Attendees"%></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@presentations.each do |presentation|%>
+      <tr>
+        <td><%=link_to presentation.name, presentation_url(presentation.id)%></td>
+        <td><%=link_to presentation.user.account.name, account_url(presentation.user.account)%></td>
+        <td><%=presentation.human_date%></td>
+        <td><%=link_to presentation.meetup.name, meetup_url(presentation.meetup)%></td>
+        <td><%=presentation.meetup.num_of_attendees%></td>
+      </tr>
+    <%end%>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>

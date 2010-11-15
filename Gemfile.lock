@@ -49,6 +49,7 @@ GEM
       activemodel (>= 3.0.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    exceptional (2.0.27)
     faraday (0.5.3)
       addressable (~> 2.2.2)
       multipart-post (~> 1.0.1)
@@ -56,6 +57,7 @@ GEM
     fastthread (1.0.7)
     gem_plugin (0.2.3)
     i18n (0.4.1)
+    json_pure (1.4.6)
     mail (2.2.6.1)
       activesupport (>= 2.3.6)
       mime-types
@@ -147,6 +149,9 @@ GEM
     tzinfo (0.3.23)
     warden (1.0.2)
       rack (>= 1.0.0)
+    warden_oauth (0.1.1)
+      oauth
+      warden (>= 0.8.1)
 
 PLATFORMS
   ruby
@@ -156,6 +161,8 @@ DEPENDENCIES
   bcrypt-ruby
   date_validator
   devise!
+  exceptional
+  json_pure
   maruku
   mocha
   mongrel
@@ -163,3 +170,4 @@ DEPENDENCIES
   omniauth
   pg
   rails (= 3.0.1)
+  warden_oauth

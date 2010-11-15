@@ -13,8 +13,14 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  after_create :create_user_account
+
+  def create_user_account
+    Account.create(:name => "#{self.email.split('@').first}", :url => "", :user_id => self.id)
+  end
+
   def create_account!(name, url)
-    Account.create(:name => name, :url => url, :user_id => self.id)
+    self.account.update_attributes(:name => name, :url => url)
   end
 
   def to_s

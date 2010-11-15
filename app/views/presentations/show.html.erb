@@ -1,15 +1,13 @@
 <% title link_to(@presentation.meetup.name, meetup_url(@presentation.meetup.id)) + " - #{@presentation.name}" %>
-<small>presented by</small> <em><%=@presentation.user%></em>
-<p style="float:right">
-  <small>submitted <%=distance_of_time_in_words(Time.now, @presentation.created_at)%> ago</small>
-</p>
 
 <div class="article">
   <%=raw @presentation.to_html%>
 </div>
 
 <div class="status">
-  Talk duration: <%=@presentation.duration/60%> minutes
+  Presenter: <%=link_to @presentation.user.account.name, account_url(@presentation.user.account)%><br/>
+  Talk duration: <%=@presentation.duration/60%> minutes<br/>
+  Submitted: <%=@presentation.human_date%>
 </div>
 
 <h2>Votes (<%=@presentation.votes.count%>):</h2>

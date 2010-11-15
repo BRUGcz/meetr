@@ -1,9 +1,19 @@
-<% title "#{@account.name}" %>
+<% title image_tag(@account.gravatar, :size => "32x32", :align => :center) + " #{@account.name}" %>
 
 <div class="bio">
   <%=raw @account.bio_to_html%>
 </div>
 
+<div class="user-timeline">
+  <h2>Timeline:</h2>
+  <ul>
+    <%@account.user.timelines.find(:all, :order => "created_at DESC", :limit => 15).each do |m|%>
+      <li><%=link_to @account.name, @account.url%> <%=m.message%></li>
+    <%end%>
+  </ul>
+</div>
+
 <div class="badge">
-  <em><%=@account.name%></em> made <%=@account.user.presentations.count%> presentations and <%=@account.user.votes.count%> votes.
+  <em><%=link_to @account.name, @account.url%></em> made 
+  <%=link_to "#{@account.user.presentations.count} presentations", presentations_url(:user_id => @account.user)%> and <%=@account.user.votes.count%> votes.
 </div>

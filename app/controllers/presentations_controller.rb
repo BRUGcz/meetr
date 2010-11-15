@@ -1,6 +1,18 @@
 class PresentationsController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    if params[:user_id]
+      user = User.find(params[:user_id])
+      @presentations = user.presentations.find(:all, :order => "created_at DESC")
+    else
+      @presentations = Presentation.find(:all, :order => "created_at DESC")
+    end
+    respond_to do |format|
+      format.html { render :index }
+    end
+  end
+
   def new
     @meetup = Meetup.find(params[:presentation][:meetup_id])
     @presentation = current_user.presentations.new(:meetup_id => @meetup.id)

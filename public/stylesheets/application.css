@@ -218,8 +218,13 @@ hr {
 }
 
 .auth_providers li {
+  margin-top: 20px;
   text-align : center;
-  margin : 10px;
+  width : 200px;
+}
+
+.auth_providers li strong {
+  margin-left : 10px;
 }
 
 .wall form textarea {
@@ -249,7 +254,8 @@ hr {
   margin : 1em 0;
 }
 
-input[type=text] {
+input[type=text],
+input[type=password] {
   border : 1px solid #ccc;
   font-size : 130%;
   padding : 3px;
@@ -304,7 +310,40 @@ h1.home {
 }
 
 .signup-box {
+  width : 40%;
+  float : right;
+}
+
+.signup-form {
+  padding-left : 1em;
+  width : 350px;
   border : 1px solid #ccc;
-  width : 50%;
-  margin : 2em auto;
+  float : left;
+  background : #D9FFA9;
+  border : 1px solid #ccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.signup-form input[type=text],
+.signup-form input[type=password]
+{
+  width : 300px;
+}
+
+div.badge {
+  border-top : 1px solid #ccc;
+  color : #444;
+  font-size : 90%;
+  margin-top : 1em;
+}
+
+div.user-timeline {
+  border-top : 1px solid #ccc;
+}
+
+div.user-timeline ul li {
+  font-size : 90%;
+  color : #444;
 }
