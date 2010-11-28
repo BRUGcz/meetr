@@ -2,4 +2,57 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  welcome:
+    title:  "Welcome to Brno Ruby Meetup Group"
+    upcoming: "Upcoming"
+    recent_talks: "Latest presentations"
+  event:  "Event"
+  talk:
+    name: "Name"
+    meetup: "Meetup"
+    presenter: "Presenter"
+    duration: "Duration"
+    date: "Date"
+    submitted: "Submitted at"
+    submit: "Submit your talk"
+    voted: "Voted for this presentation"
+  meetup:
+    presentations: "Presentations"
+    attendees: "People in this meetup"
+    attend: "Attend"
+    attend_small: "attend"
+    not_attend: "not attend"
+    attendance: "Will %{status} this event"
+    name: "Name"
+    date: "Date"
+    time: "Time"
+    location: "Location"
+    attendees_short: "Attendees"
+    actions: "Actions"
+    attending: "Attend!"
+    create: "Create new"
+  menu:
+    home: "Home"
+    meetups: "Meetups"
+    talks: "Presentations"
+    profile: "Profile"
+  timeline:
+    name: "Public timeline"
+    post: "Post"
+  logout: "Logout"
+  location: "Location"
+  description: "Description"
+  details: "Details"
+  map: "Map"
+  signup: "Sign Up"
+  password: "Password"
+  password_confirmation: "Confirm password"
+  votes: "votes"
+  votes_big: "Votes"
+  signin:
+    account: "Login with your account"
+    traditional: "Old fashion registration"
+  time:
+    in: "in"
+  profile:
+    presentations: "Presentations"

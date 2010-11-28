@@ -5,12 +5,12 @@
 </div>
 
 <div class="status">
-  Presenter: <%=link_to @presentation.user.account.name, account_url(@presentation.user.account)%><br/>
-  Talk duration: <%=@presentation.duration/60%> minutes<br/>
-  Submitted: <%=@presentation.human_date%>
+  <%=t "talk.presenter"%>: <%=link_to @presentation.user.account.name, account_url(@presentation.user.account)%><br/>
+  <%=t "talk.duration"%>: <%=@presentation.duration/60%> minutes<br/>
+  <%=t "talk.submitted"%>: <%=@presentation.human_date%>
 </div>
 
-<h2>Votes (<%=@presentation.votes.count%>):</h2>
+<h2><%=t("votes_big")%> (<%=@presentation.votes.count%>):</h2>
 <div class="votes">
   <ul class="attendees">
     <%@presentation.votes.each do |vote|%>
@@ -18,7 +18,7 @@
         <%=image_tag vote.user.account.gravatar, :size => "32x32"%>
         <%=link_to vote.user.account.name, vote.user.account.url%> &lt;<%=vote.user.email%>&gt;
         <br/>
-        Voted for this presentation <%=distance_of_time_in_words(Time.now, vote.created_at)%> ago.
+        <%=t("talk.voted")%> <%=distance_of_time_in_words(Time.now, vote.created_at)%> ago.
       </li>
     <%end%>
   </ul>

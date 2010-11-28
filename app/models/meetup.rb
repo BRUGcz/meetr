@@ -1,9 +1,9 @@
 class Meetup < ActiveRecord::Base
   belongs_to :user
   has_many :meetup_users
-  has_many :attendees, :class_name => 'User', :through => :meetup_users, :source => :user
-  has_many :presentations
-  has_many :timelines
+  has_many :attendees, :class_name => 'User', :through => :meetup_users, :source => :user, :order => "created_at DESC"
+  has_many :presentations, :order => "created_at DESC"
+  has_many :timelines, :order => "created_at DESC"
 
 
   validates :name, :presence => true, :length => { :minimum => 4 }, :uniqueness => true

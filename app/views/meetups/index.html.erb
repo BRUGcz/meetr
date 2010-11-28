@@ -1,14 +1,14 @@
-<% title "Meetups"%>
+<% title t("menu.meetups")%>
 
 <table>
   <thead>
     <tr>
-      <th><%="Name"%></th>
-      <th><%="Date"%></th>
-      <th><%="Time"%></th>
-      <th><%="Location"%></th>
-      <th><%="Attendees"%></th>
-      <th><%="Actions"%></th>
+      <th><%=t("meetup.name")%></th>
+      <th><%=t("meetup.date")%></th>
+      <th><%=t("meetup.time")%></th>
+      <th><%=t("meetup.location")%></th>
+      <th><%=t("meetup.attendees_short")%></th>
+      <th><%=t("meetup.actions")%></th>
     </tr>
   </thead>
   <tbody>
@@ -22,21 +22,21 @@
         <td style="text-align:center;width:290px;">
           <span class="a">
             <%unless meetup.user_attends?(current_user)%>
-              <%=link_to "Attending", url_for(:controller => :meetups, :action => :attend, :id => meetup.id)%>
+              <%=link_to t("meetup.attending"), url_for(:controller => :meetups, :action => :attend, :id => meetup.id)%>
             <%else%>
-              <%=link_to "Not Attending", url_for(:controller => :meetups, :action => :not_attend,
+              <%=link_to t("not_attending"), url_for(:controller => :meetups, :action => :not_attend,
                                                   :id => meetup.id)%>
             <%end%>
           </span>
           <span class="a">
-            <%=link_to "Submit talk", url_for(:controller => :presentations, :action => :new, :"presentation[meetup_id]" => meetup.id)%>
+            <%=link_to t("talk.submit"), url_for(:controller => :presentations, :action => :new, :"presentation[meetup_id]" => meetup.id)%>
           </span>
           <%if current_user.eql?(meetup.user)%>
             <span class="a">
-              <%=link_to "Delete", url_for(:controller => :meetups, :action => :destroy, :id => meetup.id)%>
+              <%=link_to t('talk.delete'), url_for(:controller => :meetups, :action => :destroy, :id => meetup.id)%>
             </span>
             <span class="a">
-              <%=link_to "Edit", url_for(:controller => :meetups, :action => :edit, :id => meetup.id)%>
+              <%=link_to t('talk.edit'), url_for(:controller => :meetups, :action => :edit, :id => meetup.id)%>
             </span>
           <%end%>
         </td>
@@ -45,7 +45,7 @@
   </tbody>
   <tfoot>
     <tr>
-      <td colspan="6"><span class="a"><%=link_to "Create new", new_meetup_path%></span></td>
+      <td colspan="6"><span class="a"><%=link_to t("meetup.create"), new_meetup_path%></span></td>
     </tr>
   </tfoot>
 </table>

@@ -1,12 +1,11 @@
-<% title "Welcome to Brno Ruby Meetup"%>
+<% title t("welcome.title")%>
 <h1 class="home"><%=@title%></h1>
-
 <p class="home-about">
 Discuss <strong>Ruby</strong> development, both within web frameworks (<a href="http://http://rubyonrails.org/">Rails</a>, <a href="http://sinatrarb.com">Sinatra</a>, etc..) and outside as system or desktop development. The atmosphere is informal, we encourage participation from everyone, interruptions are par for the course. We use a projector so everyone can type code and everyone can see. Meetings generally run an hour to two hours max and is followed by a social gathering at a nearby pub.
 </p>
 
 <ul class="home-meetups">
-  <li><strong>Upcoming:</strong></li>
+  <li><strong><%=t "welcome.upcoming"%>:</strong></li>
   <%@meetups.each do |meetup|%>
     <li><%=link_to meetup.name, meetup_url(meetup.id)%> @ <%=meetup.human_date%></li>
   <%end%>
@@ -14,15 +13,15 @@ Discuss <strong>Ruby</strong> development, both within web frameworks (<a href="
 
 <div style="clear:both;"></div>
 
-<h2>Recently submitted talks:</h2>
+<h2><%=t "welcome.recent_talks"%>:</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Event</th>
-      <th>Talk name</th>
-      <th>Presenter</th>
-      <th>Duration</th>
+      <th><%=t "event"%></th>
+      <th><%=t "talk.name"%></th>
+      <th><%=t "talk.presenter"%></th>
+      <th><%=t "talk.duration"%></th>
     </tr>
   </thead>
   <tbody>

@@ -1,0 +1,58 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+cs:
+  welcome:
+    title:  "Vítejte ve skupině uživatelů Ruby v Brňe"
+    upcoming: "Nadcházející"
+    recent_talks: "Poslední prezentace"
+  event:  "Událost"
+  talk:
+    name: "Název"
+    meetup: "Akce"
+    presenter: "Přednášející"
+    duration: "Délka"
+    date: "Datum"
+    submitted: "Přidané"
+    submit: "Nahrát svou prezentaci"
+    voted: "Hlasuj pro tuhle prezentaci"
+  meetup:
+    presentations: "Prezentace"
+    attendees: "Lidé na téhle akci"
+    attend: "Zúčastním se"
+    attend_small: "zúčastní"
+    not_attend: "nezúčastní"
+    attendance: "se %{status} na téhle akci"
+    name: "Název"
+    date: "Datum"
+    time: "Čas"
+    location: "Lokace"
+    attendees_short: "Účastníci"
+    actions: "Akce"
+    attending: "Zúčastním se!"
+    create: "Uspořádat novou akci"
+  menu:
+    home: "Úvod"
+    meetups: "Akce"
+    talks: "Prezentace"
+    profile: "Profil"
+  timeline:
+    name: "Diskuse"
+    post: "Odeslat"
+  logout: "Odhlásit se"
+  location: "Lokace"
+  description: "Popis"
+  details: "Detaily"
+  map: "Mapa"
+  signup: "Přihlásit se"
+  password: "Heslo"
+  password_confirmation: "Potvrďte heslo"
+  votes: "hlasů"
+  votes_big: "Hlasů"
+  signin:
+    account: "Přihlásit se přes Váš účet v"
+    traditional: "Vytvořit účet ručně"
+  time:
+    in: "za"
+  profile:
+    presentations: "Prezentace"

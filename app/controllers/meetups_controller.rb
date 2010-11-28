@@ -2,7 +2,7 @@ class MeetupsController < ApplicationController
    before_filter :authenticate_user!, :except => [ :show ]
 
    def index
-     @meetups = Meetup.find(:all, :order => "created_at ASC")
+     @meetups = Meetup.find(:all, :order => "created_at DESC ")
      respond_to do |format|
        format.html { render :index }
      end

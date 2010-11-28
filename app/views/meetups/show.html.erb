@@ -1,30 +1,30 @@
 <% title "#{@meetup.name}"%>
 
 <div class="event_details">
-  <h2>Details</h2>
+  <h2><%=t "details"%></h2>
   <ul class="details">
     <li>
-      <%=label :location, "Location"%>
+      <%=label :location, t("location")%>
       <span id="location" class="v">
         <%=@meetup.location%>
         <small>
-          (<%=link_to "Map", "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=#{@meetup.location}&ie=UTF8&hq=&ht=h&z=16&iwloc=A", :target => :blank %>)</small>
+          (<%=link_to t("Map"), "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=#{@meetup.location}&ie=UTF8&hq=&ht=h&z=16&iwloc=A", :target => :blank %>)</small>
       </span>
     </li>
     <li>
-      <%=label :description, "Description"%>
+      <%=label :description, t("description")%>
       <span id="description" class="v"><%=@meetup.description%></span>
     </li>
     <li>
-      <%=label :happend_at, "Event date"%>
+      <%=label :happend_at, t("talk.date")%>
       <span id="happening_at" class="v">
         <%=@meetup.human_date%> at <%=@meetup.happening_at.strftime("%H:%M")%>
-        (in <%=distance_of_time_in_words(Time.now, @meetup.happening_at)%>)
+        (<%=t('time.in')%> <%=distance_of_time_in_words(Time.now, @meetup.happening_at)%>)
       </span>
     </li>
   </ul>
   <br/>
-  <h2>Submitted talks</h2>
+  <h2><%=t("meetup.presentations")%></h2>
   <ul class="presentations">
     <%@meetup.presentations.each do |presentation|%>
       <li>
@@ -35,13 +35,13 @@
         &lt;<%=presentation.user.email%>&gt;
         <%=link_to image_tag("vote_like.gif"), { :controller => :presentations, :action => :vote, 
                                                :id => presentation.id} if user_signed_in?%>
-        <small>(<%=presentation.votes.count%> votes)</small>
+                                               <small>(<%=presentation.votes.count%> <%=t "votes"%>)</small>
       </li>
     <%end%>
   </ul>
   <p>
     <span class="a">
-      <%=link_to "Submit your talk", { :controller => :presentations, :action => :new, 
+      <%=link_to t("talk.submit"), { :controller => :presentations, :action => :new, 
                                        :"presentation[meetup_id]" => @meetup.id}%>
     </span>
   </p>
@@ -49,9 +49,9 @@
 
 <div class="attendees_list">
   <h2>
-    People in this event
+    <%=t("meetup.attendees")%>
     <%if user_signed_in? and not @meetup.user_attends?(current_user)%>
-      <%=link_to "Attend!", url_for(:controller => :meetups, :action => :attend, :id => @meetup.id, :class => :green)%>
+      <%=link_to t("meetup.attend")+'!', url_for(:controller => :meetups, :action => :attend, :id => @meetup.id, :class => :green)%>
     <%end%>
   </h2>
   <ul class="attendees">
@@ -60,20 +60,20 @@
         <%=image_tag user.account.gravatar, :size => "32x32"%>
         <%=link_to user.account.name, user.account.url%> &lt;<%=user.email%>&gt;
         <br/>
-        Will <u><%=@meetup.user_attends?(user) ? "attend" : "not attend"%></u> this event
+        <%=raw t("meetup.attendance", :status => "<u>"+(@meetup.user_attends?(user) ? t("meetup.attend_small") : t("meetup.not_attend"))+"</u>")%>
       </li>
     <%end%>
   </ul>
   <br/>
-  <h2>Public timeline</h2>
+  <h2><%=t "timeline.name"%></h2>
   <div class="wall">
       <%=form_for @meetup.timelines.new do |f|%>
         <%=f.hidden_field :meetup_id, :value => @meetup.id%>
         <%=f.text_area :message%>
-        <%=f.submit "Post"%>
+        <%=f.submit t("timeline.post")%>
       <%end if user_signed_in?%>
       <ul class="presentations" id="timeline">
-      <%@meetup.timelines.find(:all, :order => "created_at DESC").each do |msg|%>
+      <%@meetup.timelines.each do |msg|%>
         <li>
           <%=image_tag msg.user.account.gravatar, :size => "32x32"%>
           <%=link_to msg.user.account.name, msg.user.account.url%>
