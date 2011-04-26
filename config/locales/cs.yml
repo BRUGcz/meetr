@@ -22,7 +22,7 @@ cs:
     attend: "Zúčastním se"
     attend_small: "zúčastní"
     not_attend: "nezúčastní"
-    attendance: "se %{status} na téhle akci"
+    attendance: "se %{status} této akce"
     name: "Název"
     date: "Datum"
     time: "Čas"

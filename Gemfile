@@ -4,7 +4,7 @@ gem 'rails', '3.0.1'
 gem 'devise', :git => "http://github.com/plataformatec/devise.git"
 gem 'nifty-generators'
 gem 'omniauth'
-gem 'pg', :require => 'pg'
+gem 'mysql2'
 gem 'awesome_print', :require => 'ap'
 gem 'mongrel'
 gem 'date_validator'

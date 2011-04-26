@@ -29,7 +29,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           end
           if provider == :google_apps
             unless auth['user_info']['email']
-              auth['user_info']['email'] = "#{auth['user_info']['last_name'].downcase}@meetr.cz"
+              if auth['user_info']['last_name']
+                auth['user_info']['email'] = "#{auth['user_info']['last_name'].downcase}@meetr.cz"
+              else
+                auth['user_info']['email'] = "#{@user.id}@meetr.cz"
+              end
             end
             @user = User.find_by_email(auth['user_info']['email'])
             unless @user
