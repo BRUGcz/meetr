@@ -17,9 +17,11 @@ en:
     submitted: "Submitted at"
     submit: "Submit your talk"
     voted: "Voted for this presentation"
-    edit: "Edit"
     delete: "Delete"
+    edit: "Edit"
+  not_attend: "not attend"
   not_attending: "Not attending"
+  attend: "Attend"
   meetup:
     presentations: "Presentations"
     attendees: "People in this meetup"
