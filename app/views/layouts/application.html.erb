@@ -3,6 +3,8 @@
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "css3-buttons/css/buttons" %>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Nobile|Droid+Serif|Old+Standard+TT|Droid+Sans"><!-- Some special fonts -->
     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
@@ -15,10 +17,11 @@
       <%= render 'layouts/authentication_box' %>
       <%= content_tag :h1, yield(:title) if show_title? and not @no_title%>
       <%= yield %>
-      <div class="footer">
-        Powered by <a href="http://github.com/mifo/Meetr">Meetr</a> &copy; 2010 Michal Fojtik
-      </div>
     </div>
+      <div class="footer">
+        <a href="http://github.com/mifo/Meetr">meetr.cz</a> powered by RubyOnRails &copy; 2010 Michal Fojtik
+      </div>
+
   </body>
 <script type="text/javascript">
 

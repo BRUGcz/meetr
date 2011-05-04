@@ -4,6 +4,8 @@
   <%=raw @presentation.to_html%>
 </div>
 
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="<%=url_for(:only_path => false, :overwrite_params=> { })%>" num_posts="10" width="1014"></fb:comments>
+
 <div class="status">
   <%=t "talk.presenter"%>: <%=link_to @presentation.user.account.name, account_url(@presentation.user.account)%><br/>
   <%=t "talk.duration"%>: <%=@presentation.duration/60%> minutes<br/>

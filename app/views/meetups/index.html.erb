@@ -4,39 +4,31 @@
   <thead>
     <tr>
       <th><%=t("meetup.name")%></th>
-      <th><%=t("meetup.date")%></th>
-      <th><%=t("meetup.time")%></th>
-      <th><%=t("meetup.location")%></th>
-      <th><%=t("meetup.attendees_short")%></th>
-      <th><%=t("meetup.actions")%></th>
+      <th style="width: 13em;"><%=t("meetup.date")%></th>
+      <th style="width: 450px;"><%=t("meetup.actions")%></th>
     </tr>
   </thead>
   <tbody>
     <%@meetups.each do |meetup|%>
       <tr>
-        <td><%=link_to meetup.name, meetup_url(meetup.id)%></td>
-        <td><%=meetup.human_date%></td>
-        <td><%=meetup.happening_at.strftime("%H:%M")%></td>
-        <td><%=meetup.location%></td>
-        <td><%=meetup.num_of_attendees%></td>
+        <td><%=link_to meetup.name, meetup_url(meetup.id)%> @ <%=meetup.location%></td>
+        <td><%=meetup.human_date%> @ <%=meetup.happening_at.strftime("%H:%M")%></td>
         <td style="text-align:center;width:290px;">
           <span class="a">
             <%unless meetup.user_attends?(current_user)%>
               <%=link_to t("meetup.attending"), url_for(:controller => :meetups, :action => :attend, :id => meetup.id)%>
-            <%else%>
-              <%=link_to t("not_attending"), url_for(:controller => :meetups, :action => :not_attend,
-                                                  :id => meetup.id)%>
             <%end%>
           </span>
           <span class="a">
-            <%=link_to t("talk.submit"), url_for(:controller => :presentations, :action => :new, :"presentation[meetup_id]" => meetup.id)%>
+            <button class="cupid-green">
+              <%=link_to t("talk.submit"), url_for(:controller => :presentations, :action => :new, :"presentation[meetup_id]" => meetup.id)%>
+            </button>
           </span>
           <%if current_user.eql?(meetup.user)%>
             <span class="a">
-              <%=link_to t('talk.delete'), url_for(:controller => :meetups, :action => :destroy, :id => meetup.id)%>
-            </span>
-            <span class="a">
-              <%=link_to t('talk.edit'), url_for(:controller => :meetups, :action => :edit, :id => meetup.id)%>
+              <button class="cupid-green">
+                <%=link_to t('talk.edit'), url_for(:controller => :meetups, :action => :edit, :id => meetup.id)%>
+              </button>
             </span>
           <%end%>
         </td>
@@ -45,7 +37,11 @@
   </tbody>
   <tfoot>
     <tr>
-      <td colspan="6"><span class="a"><%=link_to t("meetup.create"), new_meetup_path%></span></td>
+      <td colspan="6"><span class="a">
+          <button class="skip">
+            <%=link_to t("meetup.create"), new_meetup_path%>
+            </button>
+        </span></td>
     </tr>
   </tfoot>
 </table>

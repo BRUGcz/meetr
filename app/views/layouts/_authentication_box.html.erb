@@ -6,7 +6,9 @@
     <%=link_to t('menu.profile'), '/users/edit' %>
     <%=link_to t('logout'), '/users/sign_out'%>
   <% elsif params[:controller]!='devise/sessions'%>
+    <button class="thoughtbot">
     <%=link_to t('signup'), '/users/sign_in', :class => :first unless user_signed_in?%>
+    </button>
   <% else %>
     <%=link_to t('menu.home'), root_path, :class => :first unless user_signed_in?%>
   <% end %>

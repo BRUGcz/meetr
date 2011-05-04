@@ -1,7 +1,8 @@
 body {
   background-color: #4B7399;
-  font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
+  /*font-family: Verdana, Helvetica, Arial;*/
+  font-family: 'Nobile', 'Josefin Sans Std Light', serif;
+  font-size: 9pt;
 }
 
 a img {
@@ -21,17 +22,24 @@ a {
 
 #container {
   width: 75%;
+  min-height : 600px;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
+  -moz-box-shadow: 10px 10px 5px #333;
+  -webkit-box-shadow: 10px 10px 5px #333;
+  box-shadow: 10px 1px 50px #333;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; /* future proofing */
+  -khtml-border-radius: 10px; /* for old Konqueror browsers */
 }
 
 .footer {
-  border : 1px solid #fff;
   font-size : 85%;
-  color : #999;
+  color : #333;
   padding-top : 2em;
   text-align : center;
   clear : both;
@@ -98,7 +106,7 @@ a {
 }
 
 label {
-  color : #666;
+  color : #444;
   font-weight : bold;
   font-size : 90%;
   display : block;
@@ -112,12 +120,12 @@ label:after {
 table {
   border-collapse : collapse;
   width : 100%;
-  border : 1px solid #ddd;
 }
 
 table th {
   background : #C0DAF4;
   text-align : left;
+  padding : 2px 0 2px 4px;
 }
 
 table tbody td {
@@ -128,19 +136,12 @@ table tbody td {
 table tfoot td {
   text-align : right;
   padding : 0.5em 0.2em;
+  border : none;
 }
 
-span.a a {
-  border : 1px solid #ccc;
-  background : #C8F4C0;
-  color : #222;
-  font-weight : bold;
+button a {
   text-decoration : none;
-  font-size : 90%;
-  padding : 3px 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  color : #fff;
 }
 
 ul li {
@@ -217,16 +218,6 @@ hr {
   clear : both;
 }
 
-.auth_providers li {
-  margin-top: 20px;
-  text-align : center;
-  width : 200px;
-}
-
-.auth_providers li strong {
-  margin-left : 10px;
-}
-
 .wall form textarea {
   width : 100%;
   height : 3em;
@@ -276,6 +267,7 @@ li.thumbup {
 
 div.article {
   border : 1px solid #ccc;
+  border-bottom : none;
   background : #F5FBFE;
   padding : 1em 0.5em;
   font-size : 130%;
@@ -306,12 +298,22 @@ h2 {
 
 h1.home {
   background : url("/images/ruby.png") no-repeat center left;
+  text-shadow: 2px 2px 1px #eee;
   padding : 15px 0 15px 70px;
+  margin-top : 0;
+  font-size : 300%;
 }
 
 .signup-box {
   width : 40%;
-  float : right;
+  margin : 0 auto;
+  text-align : center;
+}
+
+.signup-box ul li {
+  text-align : center;
+  margin-top : 1em;
+  margin-bottom : 1em;
 }
 
 .signup-form {

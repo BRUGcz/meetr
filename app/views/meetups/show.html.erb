@@ -24,6 +24,7 @@
     </li>
   </ul>
   <br/>
+  <iframe src="http://www.facebook.com/plugins/like.php?href=<%=url_for(:only_path => false, :overwrite_params=> { })%>&amp;send=true&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=trebuchet+ms&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
   <h2><%=t("meetup.presentations")%></h2>
   <ul class="presentations">
     <%@meetup.presentations.each do |presentation|%>
@@ -39,12 +40,6 @@
       </li>
     <%end%>
   </ul>
-  <p>
-    <span class="a">
-      <%=link_to t("talk.submit"), { :controller => :presentations, :action => :new, 
-                                       :"presentation[meetup_id]" => @meetup.id}%>
-    </span>
-  </p>
 </div>
 
 <div class="attendees_list">
@@ -64,13 +59,24 @@
       </li>
     <%end%>
   </ul>
+  <p style="text-align:right">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="BrnoRuby">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+  </p>
+
+
   <br/>
   <h2><%=t "timeline.name"%></h2>
   <div class="wall">
       <%=form_for @meetup.timelines.new do |f|%>
         <%=f.hidden_field :meetup_id, :value => @meetup.id%>
         <%=f.text_area :message%>
-        <%=f.submit t("timeline.post")%>
+    <span class="a">
+      <button class="cupid-green">
+      <%=link_to t("talk.submit"), { :controller => :presentations, :action => :new, 
+                                       :"presentation[meetup_id]" => @meetup.id}%>
+                                       </button>
+    </span>
+        <button class="cupid-green" type="submit"><%=t("timeline.post")%></button>
       <%end if user_signed_in?%>
       <ul class="presentations" id="timeline">
       <%@meetup.timelines.each do |msg|%>
@@ -83,3 +89,4 @@
     </ul>
   </div>
 </div>
+<hr/>

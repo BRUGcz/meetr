@@ -2,8 +2,9 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  Map: "Map"
   welcome:
-    title:  "Welcome to Brno Ruby Meetup Group"
+    title:  "Brno Ruby User Group"
     upcoming: "Upcoming"
     recent_talks: "Latest presentations"
   event:  "Event"
@@ -16,6 +17,9 @@ en:
     submitted: "Submitted at"
     submit: "Submit your talk"
     voted: "Voted for this presentation"
+    edit: "Edit"
+    delete: "Delete"
+  not_attending: "Not attending"
   meetup:
     presentations: "Presentations"
     attendees: "People in this meetup"
