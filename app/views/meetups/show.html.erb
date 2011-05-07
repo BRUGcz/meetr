@@ -1,4 +1,8 @@
-<% title "#{@meetup.name}"%>
+<%content_for :title do%>
+  <%="Brno Ruby Meetups - "+@meetup.name%>
+<%end%>
+
+<h1><a href="<%=root_url%>">Meetr.cz</a> &gt; <%=@meetup.name%></h1>
 
 <div class="event_details">
   <h2><%=t "details"%></h2>
