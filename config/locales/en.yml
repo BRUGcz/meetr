@@ -50,7 +50,7 @@ en:
   description: "Description"
   details: "Details"
   map: "Map"
-  signup: "Sign Up"
+  signup: "Sign In"
   password: "Password"
   password_confirmation: "Confirm password"
   votes: "votes"

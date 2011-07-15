@@ -44,6 +44,11 @@
       </li>
     <%end%>
   </ul>
+    <span class="a">
+      <%=link_to raw("<button class='cupid-green'>")+t("talk.submit")+raw('</button>'), { :controller => :presentations, :action => :new, 
+                                       :"presentation[meetup_id]" => @meetup.id}%>
+    </span>
+
 </div>
 
 <div class="attendees_list">
@@ -74,12 +79,6 @@
       <%=form_for @meetup.timelines.new do |f|%>
         <%=f.hidden_field :meetup_id, :value => @meetup.id%>
         <%=f.text_area :message%>
-    <span class="a">
-      <button class="cupid-green">
-      <%=link_to t("talk.submit"), { :controller => :presentations, :action => :new, 
-                                       :"presentation[meetup_id]" => @meetup.id}%>
-                                       </button>
-    </span>
         <button class="cupid-green" type="submit"><%=t("timeline.post")%></button>
       <%end if user_signed_in?%>
       <ul class="presentations" id="timeline">
