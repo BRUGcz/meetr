@@ -7,7 +7,7 @@ Discuss <strong>Ruby</strong> development, both within web frameworks (<a href="
 </p>
 <ul class="upcoming">
  <li><strong><%=t "welcome.upcoming"%>:</strong></li>
-<%@meetups.each do |meetup|%>
+<%Meetup.upcomming.each do |meetup|%>
   <li><%=link_to meetup.name, meetup_url(meetup.id)%> @ <%=meetup.human_date%></li>
 <%end%>
 </ul>

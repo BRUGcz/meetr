@@ -13,6 +13,10 @@ class Meetup < ActiveRecord::Base
   after_create :add_creator_to_attendees
   after_update :add_update_timeline
 
+  def self.upcomming
+    self.find(:all, :conditions => "happening_at > NOW()")
+  end
+
   def human_date
     self.happening_at.strftime("%d %B %Y")
   end
