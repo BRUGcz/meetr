@@ -1,95 +1,73 @@
-<%content_for :title do%>
-  <%="Brno Ruby Meetups - "+@meetup.name%>
-<%end%>
-
-<h1><a href="<%=root_url%>">Meetr.cz</a> &gt; <%=@meetup.name%></h1>
-
-<div class="event_details">
-  <h2><%=t "details"%></h2>
-  <ul class="details">
-    <li>
-      <%=label :location, t("location")%>
-      <span id="location" class="v">
-        <%=@meetup.location%>
-        <small>
-          (<%=link_to t("Map"), "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=#{@meetup.location}&ie=UTF8&hq=&ht=h&z=16&iwloc=A", :target => :blank %>)</small>
-      </span>
-    </li>
-    <li>
-      <%=label :description, t("description")%>
-      <span id="description" class="v"><%=@meetup.description%></span>
-    </li>
-    <li>
-      <%=label :happend_at, t("talk.date")%>
-      <span id="happening_at" class="v">
-        <%=@meetup.human_date%> at <%=@meetup.happening_at.strftime("%H:%M")%>
-        (<%=t('time.in')%> <%=distance_of_time_in_words(Time.now, @meetup.happening_at)%>)
-      </span>
-    </li>
-  </ul>
-  <br/>
-  <iframe src="http://www.facebook.com/plugins/like.php?href=<%=url_for(:only_path => false, :overwrite_params=> { })%>&amp;send=true&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=trebuchet+ms&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
-  <h2><%=t("meetup.presentations")%></h2>
-  <ul class="presentations">
-    <%@meetup.presentations.each do |presentation|%>
-      <li>
-        <%=image_tag presentation.user.account.gravatar, :size => "32x32"%>
-        <strong><%=link_to presentation.name, presentation_path(presentation.id)%></strong>
-                <br/>
-        <%=link_to presentation.user.account.name, presentation.user.account.url%> 
-        &lt;<%=presentation.user.email%>&gt;
-        <%=link_to image_tag("vote_like.gif"), { :controller => :presentations, :action => :vote, 
-                                               :id => presentation.id} if user_signed_in?%>
-                                               <small>(<%=presentation.votes.count%> <%=t "votes"%>)</small>
-      </li>
-    <%end%>
-  </ul>
-    <span class="a">
-      <%=link_to raw("<button class='cupid-green'>")+t("talk.submit")+raw('</button>'), { :controller => :presentations, :action => :new, 
-                                       :"presentation[meetup_id]" => @meetup.id}%>
-    </span>
-
+<div class="page-header row">
+  <div class="span8">
+  <h1>
+    <%=@meetup.name%>
+  </h1>
+  </div>
+  <div class="span4">
+    <a class="btn success" href="#">I will attend!</a>
+    <a class="btn info" href="#">I want present!</a>
+   </div>
 </div>
-
-<div class="attendees_list">
-  <h2>
-    <%=t("meetup.attendees")%>
-    <%if user_signed_in? and not @meetup.user_attends?(current_user)%>
-      <%=link_to t("meetup.attend")+'!', url_for(:controller => :meetups, :action => :attend, :id => @meetup.id, :class => :green)%>
-    <%end%>
-  </h2>
-  <ul class="attendees">
-    <%@meetup.attendees.each do |user|%>
-      <li>
-        <%=image_tag user.account.gravatar, :size => "32x32"%>
-        <%=link_to user.account.name, user.account.url%> &lt;<%=user.email%>&gt;
-        <br/>
-        <%=raw t("meetup.attendance", :status => "<u>"+(@meetup.user_attends?(user) ? t("meetup.attend_small") : t("meetup.not_attend"))+"</u>")%>
-      </li>
-    <%end%>
-  </ul>
-  <p style="text-align:right">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="BrnoRuby">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-  </p>
-
-
-  <br/>
-  <h2><%=t "timeline.name"%></h2>
-  <div class="wall">
-      <%=form_for @meetup.timelines.new do |f|%>
-        <%=f.hidden_field :meetup_id, :value => @meetup.id%>
-        <%=f.text_area :message%>
-        <button class="cupid-green" type="submit"><%=t("timeline.post")%></button>
-      <%end if user_signed_in?%>
-      <ul class="presentations" id="timeline">
-      <%@meetup.timelines.each do |msg|%>
-        <li>
-          <%=image_tag msg.user.account.gravatar, :size => "32x32"%>
-          <%=link_to msg.user.account.name, msg.user.account.url%>
-          <%=msg.message%> <small>(<%=distance_of_time_in_words(Time.now, msg.created_at)%> ago)</small>
-        </li>
-      <%end%>
+<!-- Example row of columns -->
+<div class="row">
+  <div class="span6">
+    <address>
+      <strong><%=@meetup.location%></strong>
+    </address>
+    <img src="http://maps.googleapis.com/maps/api/staticmap?center=<%=@meetup.location%>, Brno, CZ&zoom=13&size=300x300&maptype=roadmap&sensor=true"/>
+  </div>
+  <div class="span6">
+    <h3>Info</h3>
+    <blockquote>
+    <p>
+      <%=@meetup.description%>
+    </p>
+    <small><%=@meetup.user.account.name%> (<%=@meetup.updated_at.strftime("%d/%m/%y")%>)</small>
+    </blockquote>
+    <h3>Timeline</h3>
+     <ul class="unstyled">
+      <% @meetup.timelines.all(:limit => 10).each do |t|%>
+        <li><span class="label"><%=t.user.account.name%></span> <small><%=t.message%></small></li>
+      <% end %>
     </ul>
   </div>
 </div>
 <hr/>
+
+  <% @meetup.presentations.each do |p|%>
+    <div class="span4">
+      <h5>
+        <%=link_to p.name, presentation_url(p)%>
+        <small>by <%=p.user.account.name%></small>
+      </h5>
+      <p><%=raw p.to_html%></p>
+      <p><a class="btn" href="#">View details &raquo;</a></p>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :sidebar do %>
+  <div class="well">
+    <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+    <div>
+      <a href="https://twitter.com/share?url=<%=request.fullpath%>&amp;via=brugcz" class="twitter-share-button">Tweet</a>
+    </div>
+    <iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:200px; height:80px;" src="http://www.facebook.com/plugins/like.php?href=http://meetr.cz/meetups/7?&send=true&layout=standard&width=450&show_faces=true&action=like&colorscheme=light&font=trebuchet+ms&height=80"></iframe>
+    <h5>Attending this meetup:</h5>
+    <ul class="unstyled">
+      <% @meetup.attendees.each do |p|%>
+        <li><a href="<%=account_url(p.account)%>"><%=p.account.name%></a></li>
+      <% end %>
+    </ul>
+    <% @meetup.attendees.each do |p|%>
+      <a href="<%=account_url(p.account)%>"><img src="<%=p.account.gravatar%>" width="32"/></a>
+    <% end %>
+    <h5>Contact</h5>
+    <ul>
+      <li><a href="mailto:<%=@meetup.user.email%>">Organization</a></li>
+      <li><a href="mailto:mfojtik@mifo.sk">Tech support :-)</a></li>
+    </ul>
+  </div>
+
+<% end %>

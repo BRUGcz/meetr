@@ -1,27 +1,36 @@
-<% title link_to(@presentation.meetup.name, meetup_url(@presentation.meetup.id)) + " - #{@presentation.name}" %>
-
-<div class="article">
-  <%=raw @presentation.to_html%>
+<div class="page-header row">
+  <div class="span10">
+    <h1>
+      <img src="<%=@presentation.user.account.gravatar%>" align="top" width="64"/>
+      <%= @presentation.name %>
+    </h1>
+  </div>
+  <div class="span2">
+    <a class="btn success" href="#">I like it!</a>
+  </div>
+</div>
+<div class="row">
+  <div class="span10">
+    <blockquote>
+      <p><%=raw @presentation.to_html%></p>
+      <br/>
+      <small>
+        <%=link_to @presentation.user.account.name, account_url(@presentation.user.account)%>
+        <%=@presentation.duration/60%> minutes,
+        <%=@presentation.human_date%>
+      </small>
+    </blockquote>
+    <h3>Questions:</h3>
+    <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="<%=url_for(:only_path => false, :overwrite_params=> { })%>" num_posts="10" width="690"></fb:comments>
+  </div>
 </div>
 
-<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="<%=url_for(:only_path => false, :overwrite_params=> { })%>" num_posts="10" width="1014"></fb:comments>
-
-<div class="status">
-  <%=t "talk.presenter"%>: <%=link_to @presentation.user.account.name, account_url(@presentation.user.account)%><br/>
-  <%=t "talk.duration"%>: <%=@presentation.duration/60%> minutes<br/>
-  <%=t "talk.submitted"%>: <%=@presentation.human_date%>
-</div>
-
-<h2><%=t("votes_big")%> (<%=@presentation.votes.count%>):</h2>
-<div class="votes">
-  <ul class="attendees">
-    <%@presentation.votes.each do |vote|%>
-      <li class="thumbup">
-        <%=image_tag vote.user.account.gravatar, :size => "32x32"%>
-        <%=link_to vote.user.account.name, vote.user.account.url%> &lt;<%=vote.user.email%>&gt;
-        <br/>
-        <%=t("talk.voted")%> <%=distance_of_time_in_words(Time.now, vote.created_at)%> ago.
-      </li>
-    <%end%>
-  </ul>
-</div>
+<% content_for :sidebar do %>
+  <div class="well">
+    <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+    <div>
+      <a href="https://twitter.com/share?url=<%=request.fullpath%>&amp;via=brugcz" class="twitter-share-button">Tweet</a>
+    </div>
+    <iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:200px; height:80px;" src="http://www.facebook.com/plugins/like.php?href=http://meetr.cz/meetups/7?&send=true&layout=standard&width=450&show_faces=true&action=like&colorscheme=light&font=trebuchet+ms&height=80"></iframe>
+  </div>
+<% end %>

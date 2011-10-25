@@ -31,7 +31,7 @@
         <div class="span11">
           <h2>Welcome to meetr!</h2>
           <p>
-          Discuss <strong>Ruby</strong> development, both within web frameworks (<a href="http://rubyonrails.org">Rails</a>, <a href="http://sinatrarb.org">Sinatra</a>, etc..) and outside as system or desktop development. The atmosphere is informal, we encourage participation from everyone, interruptions are par for the course. We use a projector so everyone can type <em>code</em> and everyone can see. Meetings generally run an hour to two hours max and is followed by a social gathering at a nearby pub. 
+          Discuss <strong>Ruby</strong> development, both within web frameworks (<a href="http://rubyonrails.org">Rails</a>, <a href="http://sinatrarb.org">Sinatra</a>, etc..) and outside as system or desktop development. The atmosphere is informal, we encourage participation from everyone, interruptions are par for the course. We use a projector so everyone can type <em>code</em> and everyone can see. Meetings generally run an hour to two hours max and is followed by a social gathering at a nearby pub.
           </p>
           <p>
             <a class="btn primary large">Learn more &raquo;</a>
@@ -43,19 +43,17 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="span6">
-          <h2>Upcoming meetups</h2>
-          <dl>
+          <h2>Upcoming</h2>
+          <ul class="unstyled">
             <% @meetups.each do |m| %>
-              <dt><%=link_to m.name%></dt>
+              <li><span class="label"><%=m.happening_at.strftime("%d/%m/%y")%></span> <%=link_to m.name, meetup_url(m)%></li>
             <% end %>
-          </dl>
-
+          </ul>
           <p><a class="btn" href="#">View older &raquo;</a></p>
-
         </div>
         <div class="span5">
-          <h2>Latest presentations</h2>
-          <ul>
+          <h2>Talks</h2>
+          <ul class="unstyled">
             <% @presentations.each do |p| %>
               <li><%=link_to p.name%></li>
             <% end %>
@@ -64,7 +62,7 @@
        </div>
         <div class="span5">
           <h2>People</h2>
-          <ul>
+          <ul class="unstyled">
             <% @users.each do |u| %>
               <li><%=link_to u.account.name%></li>
             <% end %>
