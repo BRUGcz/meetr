@@ -34,6 +34,10 @@ class Meetup < ActiveRecord::Base
     MeetupUser.find(:first, :conditions => { :user_id => user.id, :meetup_id => self.id})
   end
 
+  def presenters
+    self.presentations.collect { |p| p.user }
+  end
+
   def update_attendee(user, attending = true)
     mu = MeetupUser.find(:first, :conditions => { :user_id => user.id, :meetup_id => self.id})
     mu.update_attributes!(:is_attending => attending)

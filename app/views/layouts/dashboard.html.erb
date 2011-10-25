@@ -9,16 +9,7 @@
   </head>
   <body>
     <div class="topbar">
-      <div class="fill">
-        <div class="container">
-          <a class="brand" href="#">BRUG meetups</a>
-          <ul class="nav">
-            <li class="active"><a href="#">Sign in</a></li>
-            <li><a href="#about">Talks</a></li>
-            <li><a href="#contact">People</a></li>
-          </ul>
-        </div>
-      </div>
+      <%=render :partial => 'layouts/top_bar'%>
     </div>
     <div class="container">
 
@@ -55,7 +46,10 @@
           <h2>Talks</h2>
           <ul class="unstyled">
             <% @presentations.each do |p| %>
-              <li><%=link_to p.name%></li>
+              <li>
+              <span class="label notice"><%=link_to p.user.account.name, account_url(p.user.account)%></span>&nbsp;
+                <strong><%=link_to p.name%></strong> 
+              </li>
             <% end %>
           </ul>
           <p><a class="btn" href="#">View more &raquo;</a></p>

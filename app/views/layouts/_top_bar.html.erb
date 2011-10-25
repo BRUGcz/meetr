@@ -1,0 +1,21 @@
+<div class="fill">
+  <div class="container">
+    <a class="brand" href="<%=root_url%>">BRUG meetups</a>
+    <ul class="nav">
+      <% unless current_user %>
+        <li class="active"><a href="<%=url_for('/users/sign_in')%>">Sign in</a></li>
+      <% else %>
+        <li><strong><a href="<%=new_meetup_url%>">Create meetup!</a></strong></li>
+      <% end %>
+      <li><a href="#about">Presentations</a></li>
+      <li><a href="#contact">People</a></li>
+    </ul>
+    <% if current_user %>
+      <p class="pull-right">
+      Logged in as: <%=link_to current_user.account.name, account_url(current_user.account)%>
+      &nbsp;|&nbsp;<%=link_to 'Logout', url_for("/users/sign_out")%>
+      </p>
+    <% end %>
+  </div>
+</div>
+

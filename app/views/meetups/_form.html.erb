@@ -1,22 +1,40 @@
 <%=form_for @meetup do |f|%>
-  <%= f.error_messages %>
-  <p>
-    <%=f.label :name, "Name"%>
-    <%=f.text_field :name%>
-  </p>
-  <p>
-    <%=f.label :location, "Location"%>
-    <%=f.text_field :location%>
-  </p>
-  <p>
-    <%=f.label :description, "Description"%>
-    <%=f.text_area :description%>
-  </p>
-  <p>
-    <%=f.label :happening_at, "Date"%>
-    <%=f.datetime_select :happening_at%>
-  </p>
-  <p>
-    <%=f.submit @submit_label || "Create meetup"%>
-  </p>
+  <fieldset>
+    <%= f.error_messages %>
+    <div class="clearfix">
+      <%=f.label :name, "Meetup name"%>
+      <div class="input">
+        <%=f.text_field :name, :class => 'xlarge'%><br/><span class="help-inline">Eg. 'BRUG #1'</span>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%=f.label :location, "Where?"%>
+      <div class="input">
+        <%=f.text_field :location, :class => 'xlarge'%><br/><span class="help-inline">Please provide a <strong>full address</strong> findable using <a href="http://maps.google.com">Google Maps</a>. eg. "Falk Cafe, Grohova, Brno"</span>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%=f.label :happening_at, "Date"%>
+      <div class="input">
+        <div class="inline-inputs">
+          <input class="small" type="text" value="May 1, 2011">
+          <input class="mini" type="text" value="12:00am">
+          to
+          <input class="small" type="text" value="May 8, 2011">
+          <input class="mini" type="text" value="11:59pm">
+          <span class="help-inline">All times are shown as Central European Time (CET +01:00).</span>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%=f.label :description, "Description"%>
+      <div class="input">
+        <%=f.text_area :description, :class => 'xxlarge'%>
+        <span class="help-inline"><strong>Hint:</strong> You can use Markdown syntax in this field</span>
+      </div>
+    </div>
+    <div class="actions">
+      <%=f.submit @submit_label || "Create new meetup!", :class => "btn large primary"%>
+    </div>
+  </fieldset>
 <%end%>

@@ -1,50 +1,52 @@
 <div class="page-header row">
-  <div class="span8">
   <h1>
     <%=@meetup.name%>
   </h1>
+  <div class="pull-right" style="margin-top:-35px;">
+    <%=link_to 'I want talk!', url_for(:controller => :presentations, :action => :new, :presentation => { :meetup_id => @meetup.id }), :class => 'btn info'%>
+    <% unless current_user and @meetup.user_attends? current_user%>
+      <%=link_to 'I will attend!', url_for(:action => :attend, :id => @meetup.id), :class => 'btn success'%>
+    <% else %>
+      <%=link_to "Cannot attend :(", url_for(:action => :not_attend, :id => @meetup.id), :class => 'btn danger'%>
+    <% end %>
   </div>
-  <div class="span4">
-    <a class="btn success" href="#">I will attend!</a>
-    <a class="btn info" href="#">I want present!</a>
-   </div>
 </div>
-<!-- Example row of columns -->
+
 <div class="row">
+  <div class="row">
   <div class="span6">
     <address>
       <strong><%=@meetup.location%></strong>
     </address>
-    <img src="http://maps.googleapis.com/maps/api/staticmap?center=<%=@meetup.location%>, Brno, CZ&zoom=13&size=300x300&maptype=roadmap&sensor=true"/>
+    <a href="#"><img src="http://maps.googleapis.com/maps/api/staticmap?center=<%=@meetup.location%>, Brno, CZ&zoom=13&size=330x240&maptype=roadmap&sensor=true"/></a>
   </div>
   <div class="span6">
-    <h3>Info</h3>
     <blockquote>
     <p>
       <%=@meetup.description%>
     </p>
     <small><%=@meetup.user.account.name%> (<%=@meetup.updated_at.strftime("%d/%m/%y")%>)</small>
     </blockquote>
-    <h3>Timeline</h3>
      <ul class="unstyled">
       <% @meetup.timelines.all(:limit => 10).each do |t|%>
         <li><span class="label"><%=t.user.account.name%></span> <small><%=t.message%></small></li>
       <% end %>
     </ul>
   </div>
-</div>
-<hr/>
-
+  </div>
+  <hr/>
+  <div class="row">
   <% @meetup.presentations.each do |p|%>
     <div class="span4">
-      <h5>
-        <%=link_to p.name, presentation_url(p)%>
-        <small>by <%=p.user.account.name%></small>
-      </h5>
+      <div class="alert-message warning">
+      <strong><%=link_to p.name, presentation_url(p)%></strong>
       <p><%=raw p.to_html%></p>
-      <p><a class="btn" href="#">View details &raquo;</a></p>
+      <span class="label"><small>speaker: <%=link_to p.user.account.name, account_url(p.user.account)%></small></span>
+      <p style="text-align:right;"><a class="btn info small" href="<%=presentation_url(p)%>">View more &raquo;</a></p>
+    </div>
     </div>
   <% end %>
+  </div>
 </div>
 
 <% content_for :sidebar do %>
@@ -54,19 +56,19 @@
       <a href="https://twitter.com/share?url=<%=request.fullpath%>&amp;via=brugcz" class="twitter-share-button">Tweet</a>
     </div>
     <iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:200px; height:80px;" src="http://www.facebook.com/plugins/like.php?href=http://meetr.cz/meetups/7?&send=true&layout=standard&width=450&show_faces=true&action=like&colorscheme=light&font=trebuchet+ms&height=80"></iframe>
-    <h5>Attending this meetup:</h5>
+    <h5>Attendees:</h5>
     <ul class="unstyled">
       <% @meetup.attendees.each do |p|%>
         <li><a href="<%=account_url(p.account)%>"><%=p.account.name%></a></li>
       <% end %>
     </ul>
     <% @meetup.attendees.each do |p|%>
-      <a href="<%=account_url(p.account)%>"><img src="<%=p.account.gravatar%>" width="32"/></a>
+      <a href="<%=account_url(p.account)%>"><img title="<%=p.account.name%>" src="<%=p.account.gravatar%>" width="32"/></a>
     <% end %>
-    <h5>Contact</h5>
+    <h5>Contacts</h5>
     <ul>
-      <li><a href="mailto:<%=@meetup.user.email%>">Organization</a></li>
-      <li><a href="mailto:mfojtik@mifo.sk">Tech support :-)</a></li>
+      <li><a href="mailto:<%=@meetup.user.email%>">Meetup organizer</a></li>
+      <li><a href="mailto:mfojtik@mifo.sk">Site support</a></li>
     </ul>
   </div>
 

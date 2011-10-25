@@ -1,22 +1,46 @@
-<% title "Submitting a new presentation on #{@presentation.meetup.name}"%>
-
+<div class="page-header">
+  <h1>
+    New talk proposal for <%=link_to @meetup.name, meetup_url(@meetup)%>
+  </h1>
+</div>
 <%=form_for @presentation do |f|%>
-  <%= f.error_messages %>
-  <%= f.hidden_field :meetup_id%>
-  <p>
-    <%=f.label :name, "Presentation name"%>
-    <%=f.text_field :name%>
-  </p>
-  <p>
-    <%=f.label :description, "Please describe your talk"%>
-    <%=f.text_area :description%>
-  </p>
-  <p>
-    <%=f.label :duration, "How much time you will need"%>
-    <%=f.select :duration, [["10 minutes", 600], ["20 minutes", 1200], ["40 minutes", 2400]]%>
-  </p>
-  <p>
-    <%=f.submit @submit_label || "Submit presentation"%>
-  </p>
-
+  <fieldset>
+    <%= f.error_messages %>
+    <%= f.hidden_field :meetup_id%>
+    <div class="clearfix">
+      <%=f.label :name, "Talk title"%>
+      <div class="input">
+        <%=f.text_field :name, :class => 'xlarge'%> by <span class="label"><%=current_user.account.name%></span>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%=f.label :description, "Annotation"%>
+      <div class="input">
+        <%=f.text_area :description, :class => 'xxlarge'%>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%=f.label :duration, "Time needed"%>
+      <div class="input">
+        <%=f.select :duration, [["10 minutes", 600], ["20 minutes", 1200], ["40 minutes", 2400]], :class => 'medium'%>
+      </div>
+    </div>
+    <div class="actions">
+    <div class="input">
+      <%=f.submit @submit_label || "Publish this talk proposal!", :class => 'btn primary large'%>
+    </div>
+    </div>
+  </fieldset>
 <%end%>
+<% content_for :sidebar do %>
+  <div class="well">
+    <span class="label notice">Hint:</span>
+    <p>
+    You can use Markdown in talk annotation. Talk <em>title</em> must be at least <strong>4 characters</strong> long.
+    The <em>time option</em> is only informative and help us manage the schedule better.
+    </p>
+    <p>
+      <strong>Thanks for sharing your ideas with us!</strong>
+    </p>
+  </div>
+<% end %>
