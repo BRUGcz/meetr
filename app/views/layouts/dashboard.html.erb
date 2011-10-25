@@ -2,9 +2,8 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-    <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag :defaults %>
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
+    <%= stylesheet_link_tag :application %>
+    <%= javascript_include_tag :application %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
@@ -15,41 +14,61 @@
           <a class="brand" href="#">BRUG meetups</a>
           <ul class="nav">
             <li class="active"><a href="#">Sign in</a></li>
-            <li><a href="#about">Presentations</a></li>
+            <li><a href="#about">Talks</a></li>
             <li><a href="#contact">People</a></li>
           </ul>
         </div>
       </div>
     </div>
-<div class="container">
+    <div class="container">
 
       <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h2>Welcome to meetr!</h2>
-        <p>
-        Discuss <strong>Ruby</strong> development, both within web frameworks (<a href="http://rubyonrails.org">Rails</a>, <a href="http://sinatrarb.org">Sinatra</a>, etc..) and outside as system or desktop development. The atmosphere is informal, we encourage participation from everyone, interruptions are par for the course. We use a projector so everyone can type <em>code</em> and everyone can see. Meetings generally run an hour to two hours max and is followed by a social gathering at a nearby pub. 
-        </p>
-        <p><a class="btn primary large">Learn more &raquo;</a></p>
-
+      <div class="hero-unit row">
+        <div class="span3">
+          <img src="/images/ruby.png" alt="Ruby logo" width="110"/>
+          <img src="http://www.sdbrno.cz/uploads/loga_na_prvni_strane/brno.png"/>
+        </div>
+        <div class="span11">
+          <h2>Welcome to meetr!</h2>
+          <p>
+          Discuss <strong>Ruby</strong> development, both within web frameworks (<a href="http://rubyonrails.org">Rails</a>, <a href="http://sinatrarb.org">Sinatra</a>, etc..) and outside as system or desktop development. The atmosphere is informal, we encourage participation from everyone, interruptions are par for the course. We use a projector so everyone can type <em>code</em> and everyone can see. Meetings generally run an hour to two hours max and is followed by a social gathering at a nearby pub. 
+          </p>
+          <p>
+            <a class="btn primary large">Learn more &raquo;</a>
+            <a class="btn danger large">Join us! &raquo;</a>
+          </p>
+        </div>
       </div>
 
       <!-- Example row of columns -->
       <div class="row">
         <div class="span6">
           <h2>Upcoming meetups</h2>
-          <p>Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+          <dl>
+            <% @meetups.each do |m| %>
+              <dt><%=link_to m.name%></dt>
+            <% end %>
+          </dl>
+
           <p><a class="btn" href="#">View older &raquo;</a></p>
 
         </div>
         <div class="span5">
           <h2>Latest presentations</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <ul>
+            <% @presentations.each do |p| %>
+              <li><%=link_to p.name%></li>
+            <% end %>
+          </ul>
           <p><a class="btn" href="#">View more &raquo;</a></p>
        </div>
         <div class="span5">
-
           <h2>People</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <ul>
+            <% @users.each do |u| %>
+              <li><%=link_to u.account.name%></li>
+            <% end %>
+          </ul>
           <p><a class="btn" href="#">View more &raquo;</a></p>
         </div>
       </div>
