@@ -44,6 +44,8 @@ Meetr::Application.routes.draw do
   resources :timelines
   resources :accounts
 
+  match 'users/email' => 'users#email'
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:
