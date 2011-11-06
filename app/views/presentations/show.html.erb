@@ -6,7 +6,7 @@
     </h1>
   </div>
   <div class="span2">
-    <a class="btn success" href="#">I like it!</a>
+    <a class="btn success" href="<%=vote_url(@presentation)%>">I like it!</a>
   </div>
 </div>
 <div class="row">
@@ -32,5 +32,11 @@
       <a href="https://twitter.com/share?url=<%=request.fullpath%>&amp;via=brugcz" class="twitter-share-button">Tweet</a>
     </div>
     <iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:200px; height:80px;" src="http://www.facebook.com/plugins/like.php?href=http://meetr.cz/meetups/7?&send=true&layout=standard&width=450&show_faces=true&action=like&colorscheme=light&font=trebuchet+ms&height=80"></iframe>
+    <h5>People votes:</h5>
+    <ul class="unstyled">
+      <% @presentation.votes.each do |vote|%>
+        <li><%=vote.user.account.name%></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>

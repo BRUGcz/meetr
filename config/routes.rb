@@ -39,7 +39,7 @@ Meetr::Application.routes.draw do
   match 'meetups/not_attend/:id' => 'meetups#not_attend'
 
   resources :presentations
-  match 'presentations/vote/:id' => 'presentations#vote'
+  match 'presentations/vote/:id' => 'presentations#vote', :as => :vote
 
   resources :timelines
   resources :accounts
