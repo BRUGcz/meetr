@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= @title ? @title + ' |' : 'no-title-fixme |' %> meetr.cz - Brno Ruby User Group</title>
     <%= stylesheet_link_tag :application %>
     <%= javascript_include_tag :application %>
     <%= csrf_meta_tag %>
@@ -26,7 +26,9 @@
           </p>
           <p>
             <a class="btn success large" href="<%=new_meetup_url%>">Start a meetup &raquo;</a>
-            <%=link_to raw("Join us! &raquo;"), url_for('/users/sign_on'), :class => 'btn danger large'%>
+            <% unless current_user%>
+              <%=link_to raw("Join us! &raquo;"), url_for('/users/sign_on'), :class => 'btn danger large'%>
+            <% end %>
             <a class="btn danger large" href="http://brug.cz">Learn more &raquo;</a>
           </p>
         </div>
@@ -62,7 +64,6 @@
               <li><%=link_to u.account.name, account_url(u.account)%></li>
             <% end %>
           </ul>
-          <p><a class="btn" href="#">View more &raquo;</a></p>
         </div>
       </div>
 

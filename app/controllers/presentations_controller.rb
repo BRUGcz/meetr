@@ -9,6 +9,7 @@ class PresentationsController < ApplicationController
       @presentations = Presentation.find(:all, :order => "created_at DESC")
     end
     @meetups = Meetup.all
+    @title = "Talks history"
     respond_to do |format|
       format.html { render :index }
     end
@@ -34,6 +35,7 @@ class PresentationsController < ApplicationController
 
   def show
     @presentation = Presentation.find(params[:id])
+    @title = "#{@presentation.user.account.name} - #{@presentation.name}"
     respond_to do |format|
       format.html { render :show }
     end

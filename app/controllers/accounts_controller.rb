@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
 
   def show
     @account = Account.find(params[:id])
+    @title = @account.name
     respond_to do |format|
       format.html { render :show }
     end

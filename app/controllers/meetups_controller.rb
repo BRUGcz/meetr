@@ -4,6 +4,7 @@ class MeetupsController < ApplicationController
    def index
      @meetups = Meetup.find(:all, :order => "created_at DESC ")
      @presentations = Presentation.find(:all, :order => "created_at DESC", :limit => 8)
+     @title = "List of meetups"
      respond_to do |format|
        format.html { render :index }
      end
@@ -52,6 +53,7 @@ class MeetupsController < ApplicationController
 
    def show
      @meetup = Meetup.find(params[:id])
+     @title = "#{@meetup.name}"
      respond_to do |format|
        format.html { render :show }
      end
