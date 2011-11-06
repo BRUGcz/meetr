@@ -17,11 +17,8 @@
       <%=f.label :happening_at, "Date"%>
       <div class="input">
         <div class="inline-inputs">
-          <input class="small" type="text" value="May 1, 2011">
-          <input class="mini" type="text" value="12:00am">
-          to
-          <input class="small" type="text" value="May 8, 2011">
-          <input class="mini" type="text" value="11:59pm">
+          <input name="start_date" class="small" type="text" value="<%=1.day.from_now.strftime('%b %d, %Y')%>">
+          <input name="start_time" class="mini" type="text" value="<%=1.day.from_now.strftime('%H:%m')%>">
           <span class="help-inline">All times are shown as Central European Time (CET +01:00).</span>
         </div>
       </div>

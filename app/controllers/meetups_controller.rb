@@ -18,6 +18,7 @@ class MeetupsController < ApplicationController
 
    def create
      @meetup = current_user.meetups.new(params[:meetup])
+     @meetup.happening_at = DateTime.parse("#{params[:start_date]} #{params[:start_time]}")
      if @meetup.valid? and @meetup.save
        return redirect_to(meetups_path)
      else
