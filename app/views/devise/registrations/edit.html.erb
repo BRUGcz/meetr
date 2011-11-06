@@ -1,28 +1,56 @@
-<h2>Customize your profile  </h2>
+<div class="page-header">
+  <h1>Edit account</h1>
+</div>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <p>
-    <%= f.label :email %>
-    <%=image_tag(current_user.account.gravatar, :size => "32x32", :align => :center)%>
-    <%= f.email_field :email %><%=f.submit "Update email"%><br/>
-    <em><small>(Note: Your avatar is provided by <a href="http://en.gravatar.com/">Gravatar</a>.)</small></em>
-  </p>
+  <h3>Email</h3>
+  <fieldset>
+    <%= devise_error_messages! %>
+    <div class="clearfix">
+      <%= f.label :email %>
+      <div class="input">
+        <%= f.email_field :email %>
+        <%=image_tag(current_user.account.gravatar, :size => "32x32", :align => :center)%><br/>
+        <span class="help-inline">(Note: Your avatar is provided by <a href="http://en.gravatar.com/">Gravatar</a>.)</span>
+      </div>
+    <div>
+      <div class="actions">
+        <%=f.submit "Update email", :class => 'btn large primary'%>
+      </div>
+  </fieldset>
 <% end %>
 
 <%= form_for current_user.account do |f|%>
-  <p>
-    <%=f.label :bio, "Bio"%>
-    <%=f.text_area :bio%>
-    <em><small>(Note: You can use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> syntax in this field)</small></em>
-  </p>
-  <p>
-    <%=f.label :url, "Link you your homepage"%>
-    <%=f.text_field :url%>
-  </p>
-  <p>
-    <%=f.submit "Update profile"%>
-  </p>
+  <fieldset>
+  <h3>Profile</h3>
+  <div class="clearfix">
+    <%=f.label :bio, "Short bio"%>
+    <div class="input">
+      <%=f.text_area :bio, :class => :xxlarge%>
+    </div>
+  </div>
+  <div class="clearfix">
+    <%=f.label :url, "Link to your blog"%>
+    <div class="input">
+      <%=f.text_field :url, :class => 'xxlarge'%>
+    </div>
+  </div>
+  <div class="actions">
+    <%=f.submit "Update profile", :class => 'btn large primary'%>
+  </div>
 <%end%>
 
-<%= link_to "Back", :back %>
+<% content_for :sidebar do %>
+  <div class="well">
+    <span class="label notice">Hint:</span>
+    <p>
+    You can use <strong>Markdown</strong> syntax in your bio text. 
+    </p>
+    <span class="label warning">Important:</span>
+    <p>
+    Use your <strong>real email</strong>, since some people may contact you after your talk.
+    If you don't provide a real email a <em>@meetr.cz</em> email will be assigned
+    and all emails to you <strong>will be discarded</strong>.
+    </p>
+  </div>
+<% end %>

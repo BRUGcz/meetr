@@ -3,6 +3,7 @@ class MeetupsController < ApplicationController
 
    def index
      @meetups = Meetup.find(:all, :order => "created_at DESC ")
+     @presentations = Presentation.find(:all, :order => "created_at DESC", :limit => 8)
      respond_to do |format|
        format.html { render :index }
      end

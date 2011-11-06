@@ -1,11 +1,14 @@
-<% title t("menu.meetups")%>
+<div class="page-header row">
+  <div class="span12">
+    <h1>Meetups</h1>
+  </div>
+</div>
 
-<table>
+<table class="zebra-striped">
   <thead>
     <tr>
       <th><%=t("meetup.name")%></th>
       <th style="width: 13em;"><%=t("meetup.date")%></th>
-      <th style="width: 450px;"><%=t("meetup.actions")%></th>
     </tr>
   </thead>
   <tbody>
@@ -13,35 +16,23 @@
       <tr>
         <td><%=link_to meetup.name, meetup_url(meetup.id)%> @ <%=meetup.location%></td>
         <td><%=meetup.human_date%> @ <%=meetup.happening_at.strftime("%H:%M")%></td>
-        <td style="text-align:center;width:290px;">
-          <span class="a">
-            <%unless meetup.user_attends?(current_user)%>
-              <%=link_to t("meetup.attending"), url_for(:controller => :meetups, :action => :attend, :id => meetup.id)%>
-            <%end%>
-          </span>
-          <span class="a">
-            <button class="cupid-green">
-              <%=link_to t("talk.submit"), url_for(:controller => :presentations, :action => :new, :"presentation[meetup_id]" => meetup.id)%>
-            </button>
-          </span>
-          <%if current_user.eql?(meetup.user)%>
-            <span class="a">
-              <button class="cupid-green">
-                <%=link_to t('talk.edit'), url_for(:controller => :meetups, :action => :edit, :id => meetup.id)%>
-              </button>
-            </span>
-          <%end%>
-        </td>
       </tr>
     <%end%>
   </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="6"><span class="a">
-          <button class="skip">
-            <%=link_to t("meetup.create"), new_meetup_path%>
-            </button>
-        </span></td>
-    </tr>
-  </tfoot>
 </table>
+
+<% content_for :sidebar do %>
+  <div class="well">
+    <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+    <div>
+      <a href="https://twitter.com/share?url=<%=request.fullpath%>&amp;via=brugcz" class="twitter-share-button">Tweet</a>
+    </div>
+    <iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:200px; height:80px;" src="http://www.facebook.com/plugins/like.php?href=http://meetr.cz/meetups/7?&send=true&layout=standard&width=450&show_faces=true&action=like&colorscheme=light&font=trebuchet+ms&height=80"></iframe>
+    <h3>Talks:</h3>
+    <ul>
+      <%@presentations.each do |p|%>
+        <li><%=link_to p.name, presentation_url(p)%></li>
+      <%end%>
+    </ul>
+  </div>
+<% end %>

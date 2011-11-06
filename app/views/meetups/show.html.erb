@@ -23,7 +23,7 @@
   <div class="span6">
     <blockquote>
     <p>
-      <%=@meetup.description%>
+      <%=link_to @meetup.name, meetup_url(@meetup)%>
     </p>
     <small><%=@meetup.user.account.name%> (<%=@meetup.updated_at.strftime("%d/%m/%y")%>)</small>
     </blockquote>
@@ -37,14 +37,7 @@
   <hr/>
   <div class="row">
   <% @meetup.presentations.each do |p|%>
-    <div class="span4">
-      <div class="alert-message warning">
-      <strong><%=link_to p.name, presentation_url(p)%></strong>
-      <p><%=raw p.to_html%></p>
-      <span class="label"><small>speaker: <%=link_to p.user.account.name, account_url(p.user.account)%></small></span>
-      <p style="text-align:right;"><a class="btn info small" href="<%=presentation_url(p)%>">View more &raquo;</a></p>
-    </div>
-    </div>
+    <%=render :partial => 'presentations/badge', :locals => { :presentation => p }%> 
   <% end %>
   </div>
 </div>
@@ -56,7 +49,7 @@
       <a href="https://twitter.com/share?url=<%=request.fullpath%>&amp;via=brugcz" class="twitter-share-button">Tweet</a>
     </div>
     <iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:200px; height:80px;" src="http://www.facebook.com/plugins/like.php?href=http://meetr.cz/meetups/7?&send=true&layout=standard&width=450&show_faces=true&action=like&colorscheme=light&font=trebuchet+ms&height=80"></iframe>
-    <h5>Attendees:</h5>
+    <h5>RVSP:</h5>
     <ul class="unstyled">
       <% @meetup.attendees.each do |p|%>
         <li><a href="<%=account_url(p.account)%>"><%=p.account.name%></a></li>

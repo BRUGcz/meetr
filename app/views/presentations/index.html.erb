@@ -1,26 +1,44 @@
-<% title t("profile.presentations")%>
+<div class="page-header row">
+  <div class="span12">
+    <h1>Presentations</h1>
+  </div>
+</div>
 
-<table>
+<table class="zebra-striped">
   <thead>
     <tr>
       <th><%=t("talk.name")%></th>
       <th><%=t("talk.presenter")%></th>
       <th><%=t("talk.submitted")%></th>
       <th><%=t("talk.meetup")%></th>
-      <th><%=t("meetup.attendees")%></th>
     </tr>
   </thead>
   <tbody>
     <%@presentations.each do |presentation|%>
       <tr>
-        <td><%=link_to presentation.name, presentation_url(presentation.id)%></td>
+        <td><strong><%=link_to presentation.name, presentation_url(presentation.id)%></strong></td>
         <td><%=link_to presentation.user.account.name, account_url(presentation.user.account)%></td>
         <td><%=presentation.human_date%></td>
         <td><%=link_to presentation.meetup.name, meetup_url(presentation.meetup)%></td>
-        <td><%=presentation.meetup.num_of_attendees%></td>
       </tr>
     <%end%>
   </tbody>
   <tfoot>
   </tfoot>
 </table>
+
+<% content_for :sidebar do %>
+  <div class="well">
+    <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+    <div>
+      <a href="https://twitter.com/share?url=<%=request.fullpath%>&amp;via=brugcz" class="twitter-share-button">Tweet</a>
+    </div>
+    <iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:200px; height:80px;" src="http://www.facebook.com/plugins/like.php?href=http://meetr.cz/meetups/7?&send=true&layout=standard&width=450&show_faces=true&action=like&colorscheme=light&font=trebuchet+ms&height=80"></iframe>
+    <h3>Meetups:</h3>
+    <ul>
+      <%@meetups.each do |m|%>
+        <li><%=link_to m.name, meetup_url(m)%></li>
+      <%end%>
+    </ul>
+  </div>
+<% end %>

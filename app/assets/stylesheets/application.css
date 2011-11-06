@@ -2,3 +2,6 @@
  *= require twitter/bootstrap
 */
 
+.red {
+  color : #cc0000;
+}

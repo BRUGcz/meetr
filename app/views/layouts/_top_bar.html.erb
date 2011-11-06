@@ -1,13 +1,13 @@
 <div class="fill">
   <div class="container">
-    <a class="brand" href="<%=root_url%>">BRUG meetups</a>
+    <a class="brand" href="<%=root_url%>">BRUG.<span class="red">meetups</span></a>
     <ul class="nav">
       <% unless current_user %>
         <li class="active"><a href="<%=url_for('/users/sign_in')%>">Sign in</a></li>
       <% else %>
-        <li><strong><a href="<%=new_meetup_url%>">Create meetup!</a></strong></li>
+        <li><strong><a href="<%=new_meetup_url%>">Start a meetup!</a></strong></li>
       <% end %>
-      <li><a href="#about">Presentations</a></li>
+      <li><%=link_to "List presentations", presentations_url%></li>
       <li><a href="#contact">People</a></li>
     </ul>
     <% if current_user %>

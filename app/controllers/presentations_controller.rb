@@ -1,5 +1,5 @@
 class PresentationsController < ApplicationController
-  before_filter :authenticate_user!, :except => [ :show ]
+  before_filter :authenticate_user!, :except => [ :show, :index ]
 
   def index
     if params[:user_id]
@@ -8,6 +8,7 @@ class PresentationsController < ApplicationController
     else
       @presentations = Presentation.find(:all, :order => "created_at DESC")
     end
+    @meetups = Meetup.all
     respond_to do |format|
       format.html { render :index }
     end

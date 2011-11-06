@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   has_many :meetups
   has_many :presentations
   has_many :votes
-  has_many :attendances, :class_name => 'Meetup', :through => :meetup_users
+  has_many :meetup_users
+  has_many :attendances, :class_name => 'Meetup', :through => :meetup_users, :source => :meetup
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
