@@ -42,9 +42,9 @@ class Meetup < ActiveRecord::Base
     mu = MeetupUser.find(:first, :conditions => { :user_id => user.id, :meetup_id => self.id})
     mu.update_attributes!(:is_attending => attending)
     if attending
-      user.timelines.create(:meetup_id => self.id, :message => "is will now attend #{self.name}")
+      user.timelines.create(:meetup_id => self.id, :message => "is attending #{self.name}")
     else
-      user.timelines.create(:meetup_id => self.id, :message => "will not attend #{self.name}")
+      user.timelines.create(:meetup_id => self.id, :message => "is not attending #{self.name}")
     end
   end
 

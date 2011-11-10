@@ -29,7 +29,7 @@
     </blockquote>
      <ul class="unstyled">
       <% @meetup.timelines.all(:limit => 10).each do |t|%>
-        <li><span class="label"><%=t.user.account.name%></span> <small><%=t.message%></small></li>
+        <li><span class="label name"><%=t.user.account.name%></span> <small><%=t.message%></small> <span class="label">(<%= time_ago_in_words(t.created_at) %>)</span></li>
       <% end %>
     </ul>
   </div>
