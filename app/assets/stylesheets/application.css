@@ -14,3 +14,5 @@
     padding: 30px 0;
     text-shadow: 0 1px 0 #FFFFFF;
 }
+
+.label.name { background-color:#88cffc; color: #555 }
