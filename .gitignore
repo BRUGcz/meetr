@@ -4,3 +4,4 @@ log/*.log
 tmp/**/*
 *.sw*
 *.lock
+config/database.yml
