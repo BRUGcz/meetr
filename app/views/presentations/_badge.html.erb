@@ -1,6 +1,6 @@
 <div class="span4">
   <div class="alert-message warning">
-    <strong><%=link_to presentation.name, presentation_url(p)%></strong>
+    <strong><%=link_to presentation.name, presentation_url(presentation)%></strong>
     <p><%=raw presentation.to_html%></p>
     <span class="label"><%=link_to presentation.user.account.name, account_url(presentation.user.account)%></span>
     <p style="text-align:right;">
